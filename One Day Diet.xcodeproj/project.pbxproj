@@ -14,6 +14,9 @@
 		EF4759562B4A469500BCE0EA /* One_Day_DietUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4759552B4A469500BCE0EA /* One_Day_DietUITests.swift */; };
 		EF4759582B4A469500BCE0EA /* One_Day_DietUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4759572B4A469500BCE0EA /* One_Day_DietUITestsLaunchTests.swift */; };
 		EF4759672B4A4F7800BCE0EA /* FoodGroupsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */; };
+		EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC992B4B702900A30501 /* ViewModel.swift */; };
+		EF7BEC9C2B4B707900A30501 /* FoodGroupSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC9B2B4B707900A30501 /* FoodGroupSliderView.swift */; };
+		EF7BEC9E2B4B70A400A30501 /* ResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC9D2B4B70A400A30501 /* ResetButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		EF4759552B4A469500BCE0EA /* One_Day_DietUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_Day_DietUITests.swift; sourceTree = "<group>"; };
 		EF4759572B4A469500BCE0EA /* One_Day_DietUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_Day_DietUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGroupsData.swift; sourceTree = "<group>"; };
+		EF7BEC992B4B702900A30501 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		EF7BEC9B2B4B707900A30501 /* FoodGroupSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGroupSliderView.swift; sourceTree = "<group>"; };
+		EF7BEC9D2B4B70A400A30501 /* ResetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +102,13 @@
 			isa = PBXGroup;
 			children = (
 				EF47593B2B4A469100BCE0EA /* ContentView.swift */,
+				EF7BEC9B2B4B707900A30501 /* FoodGroupSliderView.swift */,
+				EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */,
+				EF7BEC9D2B4B70A400A30501 /* ResetButton.swift */,
+				EF7BEC992B4B702900A30501 /* ViewModel.swift */,
 				EF47593D2B4A469400BCE0EA /* Assets.xcassets */,
 				EF47593F2B4A469400BCE0EA /* One_Day_Diet.entitlements */,
 				EF4759402B4A469400BCE0EA /* Preview Content */,
-				EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */,
 			);
 			path = "One Day Diet";
 			sourceTree = "<group>";
@@ -260,7 +269,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF47593C2B4A469100BCE0EA /* ContentView.swift in Sources */,
+				EF7BEC9E2B4B70A400A30501 /* ResetButton.swift in Sources */,
+				EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */,
 				EF4759672B4A4F7800BCE0EA /* FoodGroupsData.swift in Sources */,
+				EF7BEC9C2B4B707900A30501 /* FoodGroupSliderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,7 +446,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
@@ -472,7 +484,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
