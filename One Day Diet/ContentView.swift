@@ -33,8 +33,8 @@ struct ContentView: View {
                         Image(systemName: "gear")
                             .font(.body)
                     }
-                }
-            }.padding([.top, .trailing], 10)
+                }.padding(.trailing, 32)
+            }
             
             DatePicker("", selection: $selectedDate, displayedComponents: .date)
                 .onChange(of: selectedDate) {
