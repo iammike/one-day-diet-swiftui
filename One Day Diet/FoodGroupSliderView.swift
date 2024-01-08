@@ -28,7 +28,7 @@ struct FoodGroupSliderView: View {
             let nextIndex = serving + 1
             let scoreChangeByNextServing = nextIndex < foodGroup.scores.count ? foodGroup.scores[nextIndex] - currentScore : 0
 
-            Text("Servings: \(serving), Score: \(currentScore)")
+            Text("Servings: \(serving) → Score: \(currentScore)")
                 .foregroundColor(.primary)
 
             Text("Effect of Next Serving: \(scoreChangeByNextServing > 0 ? "+\(scoreChangeByNextServing)" : "\(scoreChangeByNextServing)")")

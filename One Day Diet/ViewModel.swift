@@ -26,9 +26,9 @@ class ViewModel: ObservableObject {
     }
 
 
-    func resetServings() {
+    func resetServings(for date: Date) {
         selectedServings = Array(repeating: 0, count: foodGroupsData.count)
-        saveData(for: Date().formattedDate)
+        saveData(for: date)
     }
 
     func calculateTotalScore() -> Int {
@@ -42,18 +42,26 @@ class ViewModel: ObservableObject {
         if let savedData = servingsDataStore[dateKey] {
             selectedServings = savedData
         } else {
-            resetServings()
+            resetServings(for: date)
         }
-        saveData(for: dateKey)
+        saveData(for: date)
     }
 
-    func saveData(for dateKey: String) {
+    func saveData(for date: Date) {
+        let dateKey = date.formattedDate
         servingsDataStore[dateKey] = selectedServings
         UserDefaults.standard.set(servingsDataStore, forKey: UserDefaultsKeys.servingsDataStore)
     }
     
     func sliderValueChanged(on date: Date) {
-        saveData(for: date.formattedDate)
+        saveData(for: date)
+    }
+    
+    func clearAllData() {
+        servingsDataStore = [:]
+        selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.servingsDataStore)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.selectedServings)
     }
 }
 

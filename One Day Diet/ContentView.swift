@@ -10,23 +10,41 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
     @State private var selectedDate = Date()
+    @State private var showAlert = false
+    @State private var showAboutSheet = false
 
+    
     var body: some View {
         VStack {
-            Text("One Day Diet").font(.largeTitle).padding()
+            ZStack {
+                HStack {
+                    Text("One Day Diet")
+                        .font(.largeTitle)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }
+                
+                HStack {
+                    Spacer()
+                    Menu {
+                        Button("Clear Selected Day's Data", action: { viewModel.resetServings(for: selectedDate) })
+                        Button("Clear All Data") { showAlert = true }
+                        Button("About") { showAboutSheet = true }
+                    } label: {
+                        Image(systemName: "gear")
+                            .font(.body)
+                    }
+                }
+            }.padding([.top, .trailing], 10)
+            
+            DatePicker("", selection: $selectedDate, displayedComponents: .date)
+                .onChange(of: selectedDate) {
+                    viewModel.updateData(for: selectedDate)
+                }
+                .labelsHidden()
+                .padding(.bottom, 10)
             
             Text("Total Score: \(viewModel.calculateTotalScore())").font(.title)
             
-            HStack {
-                DatePicker("", selection: $selectedDate, displayedComponents: .date)
-                    .onChange(of: selectedDate) {
-                        viewModel.updateData(for: selectedDate)
-                    }
-                    .padding()
-                Spacer()
-                ResetButton(action: viewModel.resetServings, label: "Clear Data").padding()
-            }
-
             List {
                 ForEach(0..<foodGroupsData.count, id: \.self) { index in
                     FoodGroupSliderView(foodGroup: foodGroupsData[index], serving: $viewModel.selectedServings[index])
@@ -34,6 +52,21 @@ struct ContentView: View {
                             viewModel.sliderValueChanged(on: selectedDate)
                         }
                 }
+            }
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Warning"),
+                message: Text("This will reset all application data. Are you sure?"),
+                primaryButton: .destructive(Text("Reset")) {
+                    viewModel.clearAllData()
+                },
+                secondaryButton: .cancel()
+            )
+        }
+        .sheet(isPresented: $showAboutSheet) {
+            AboutView() {
+                showAboutSheet = false
             }
         }
     }
