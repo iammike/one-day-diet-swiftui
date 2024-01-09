@@ -36,6 +36,10 @@ class ViewModel: ObservableObject {
             total + foodGroupsData[index.offset].scores[index.element]
         }
     }
+    
+//    func calculateTotalServings() -> Int {
+//        selectedServings.reduce(0, +)
+//    }
 
     func updateData(for date: Date) {
         let dateKey = date.formattedDate

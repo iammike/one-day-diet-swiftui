@@ -19,6 +19,7 @@ struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
     @State private var selectedDate = Date()
     @State private var showAboutSheet = false
+    @State private var showFaqSheet = false
     @State private var activeAlert: ActiveAlert?
     private var whatsNewAlert = WhatsNewAlert()
     
@@ -37,10 +38,11 @@ struct ContentView: View {
                     Menu {
                         Button("Clear Selected Day's Data", action: { viewModel.resetServings(for: selectedDate) })
                         Button("Clear All Data") { activeAlert = .resetDataAlert }
+                        Button("FAQ") { showFaqSheet = true }
                         Button("About") { showAboutSheet = true }
                     } label: {
-                        Image(systemName: "gear")
-                            .font(.body)
+                        Image(systemName: "ellipsis.circle")
+                            .font(.title)
                     }
                 }.padding(.trailing, 32)
             }
@@ -53,6 +55,7 @@ struct ContentView: View {
                 .padding(.bottom, 10)
             
             Text("Total Score: \(viewModel.calculateTotalScore())").font(.title)
+//            Text("Servings: \(viewModel.calculateTotalServings())").font(.body)
             
             List {
                 ForEach(0..<foodGroupsData.count, id: \.self) { index in
@@ -82,6 +85,12 @@ struct ContentView: View {
                     },
                     secondaryButton: .cancel()
                 )
+            }
+        }
+        
+        .sheet(isPresented: $showFaqSheet) {
+            FaqView() {
+                showFaqSheet = false
             }
         }
         
