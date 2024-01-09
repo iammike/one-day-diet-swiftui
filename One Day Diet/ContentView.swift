@@ -42,9 +42,9 @@ struct ContentView: View {
                         Button("About") { showAboutSheet = true }
                     } label: {
                         Image(systemName: "ellipsis.circle")
-                            .font(.title)
+                            .font(.title2)
                     }
-                }.padding(.trailing, 32)
+                }.padding(.trailing, 36)
             }
             
             DatePicker("", selection: $selectedDate, displayedComponents: .date)

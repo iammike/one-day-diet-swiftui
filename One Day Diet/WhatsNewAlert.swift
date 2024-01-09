@@ -29,6 +29,7 @@ struct WhatsNewAlert {
                             • Bolded app title 🎆
                             • Added this new version alert 🪄
                             • Added a FAQ to the menu 🙋
+                            • New menu icon 🌶️
                             """
         
         return Alert(
