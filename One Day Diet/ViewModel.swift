@@ -40,7 +40,6 @@ class ViewModel: ObservableObject {
     }
     
     func checkAndUpdateDate() {
-        print("inside check and update")
         let defaults = UserDefaults.standard
         let todayKey = Date().formattedDate
         let lastAccessedDate = defaults.string(forKey: UserDefaultsKeys.lastAccessedDate) ?? todayKey
