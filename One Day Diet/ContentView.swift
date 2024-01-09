@@ -36,11 +36,12 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     Menu {
-                        Button("Clear Selected Day's Data", action: { viewModel.resetServings(for: viewModel.currentDate) })
-                        Button("Clear All Data") { activeAlert = .resetDataAlert }
-                        Button("What's New?") { activeAlert = .versionAlert }
-                        Button("FAQ") { showFaqSheet = true }
-                        Button("About") { showAboutSheet = true }
+                        Button("😎 What's New?") { activeAlert = .versionAlert }
+                        Button("🙋 FAQ") { showFaqSheet = true }
+                        Button("ℹ️ About") { showAboutSheet = true }
+                        Divider()
+                        Button("🧼 Clear Visible Data", action: { viewModel.resetServings(for: viewModel.currentDate) })
+                        Button("💣 Clear All Data") { activeAlert = .resetDataAlert }
                     } label: {
                         Image(systemName: "ellipsis.circle")
                             .font(.title2)
