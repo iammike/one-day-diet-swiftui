@@ -18,23 +18,23 @@ struct WhatsNewAlert {
             defaults.set(currentVersion, forKey: "lastVersionPromptedForReview")
             return true
         }
-//        return false
-        return true
+        return false
     }
 
 
     func getVersionAlert() -> Alert {
         let bulletedList = 
                             """
-                            • Bolded app title 🎆
-                            • Added this new version alert 🪄
-                            • Added a FAQ to the menu 🙋
-                            • New menu icon 🌶️
+                            🎆 Bolded app title
+                            🪄 Added this new version alert
+                            🙋 Added a FAQ to the menu
+                            🌶️ New menu icon
+                            🗓️ Adjusted logic to determine when to switch to a new day
                             """
         
         return Alert(
             title: Text("What's New in \(currentVersion)!"),
-            message: Text("\(bulletedList)"),
+            message: Text("\n\(bulletedList)"),
             dismissButton: .default(Text("OK"))
         )
     }

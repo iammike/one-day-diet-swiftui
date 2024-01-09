@@ -17,7 +17,7 @@ enum ActiveAlert: Identifiable {
 
 struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
-    @State private var selectedDate = Date()
+    @Environment(\.scenePhase) private var scenePhase
     @State private var showAboutSheet = false
     @State private var showFaqSheet = false
     @State private var activeAlert: ActiveAlert?
@@ -36,8 +36,9 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     Menu {
-                        Button("Clear Selected Day's Data", action: { viewModel.resetServings(for: selectedDate) })
+                        Button("Clear Selected Day's Data", action: { viewModel.resetServings(for: viewModel.currentDate) })
                         Button("Clear All Data") { activeAlert = .resetDataAlert }
+                        Button("What's New?") { activeAlert = .versionAlert }
                         Button("FAQ") { showFaqSheet = true }
                         Button("About") { showAboutSheet = true }
                     } label: {
@@ -47,9 +48,9 @@ struct ContentView: View {
                 }.padding(.trailing, 36)
             }
             
-            DatePicker("", selection: $selectedDate, displayedComponents: .date)
-                .onChange(of: selectedDate) {
-                    viewModel.updateData(for: selectedDate)
+            DatePicker("", selection: $viewModel.currentDate, displayedComponents: .date)
+                .onChange(of: viewModel.currentDate) { oldValue, newValue in
+                    viewModel.updateData(for: newValue)
                 }
                 .labelsHidden()
                 .padding(.bottom, 10)
@@ -61,7 +62,7 @@ struct ContentView: View {
                 ForEach(0..<foodGroupsData.count, id: \.self) { index in
                     FoodGroupSliderView(foodGroup: foodGroupsData[index], serving: $viewModel.selectedServings[index])
                         .onReceive(viewModel.$selectedServings) { _ in
-                            viewModel.sliderValueChanged(on: selectedDate)
+                            viewModel.sliderValueChanged(on: viewModel.currentDate)
                         }
                 }
             }
@@ -97,6 +98,12 @@ struct ContentView: View {
         .sheet(isPresented: $showAboutSheet) {
             AboutView() {
                 showAboutSheet = false
+            }
+        }
+        
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                viewModel.checkAndUpdateDate()
             }
         }
     }

@@ -10,19 +10,62 @@ import SwiftUI
 struct UserDefaultsKeys {
     static let selectedServings = "selectedServings"
     static let servingsDataStore = "servingsDataStore"
+    static let lastAccessedDate = "lastAccessedDate"
 }
 
 class ViewModel: ObservableObject {
     @Published var selectedServings: [Int]
+    @Published var currentDate: Date = Date()
     private var servingsDataStore: [String: [Int]] = [:]
 
     init() {
-        self.selectedServings = UserDefaults.standard.array(forKey: UserDefaultsKeys.selectedServings) as? [Int] ?? Array(repeating: 0, count: foodGroupsData.count)
-        if let storedData = UserDefaults.standard.object(forKey: UserDefaultsKeys.servingsDataStore) as? [String: [Int]] {
+        let defaults = UserDefaults.standard
+        self.selectedServings = defaults.array(forKey: UserDefaultsKeys.selectedServings) as? [Int] ?? Array(repeating: 0, count: foodGroupsData.count)
+
+        if let storedData = defaults.object(forKey: UserDefaultsKeys.servingsDataStore) as? [String: [Int]] {
             self.servingsDataStore = storedData
         }
+
         let todayKey = Date().formattedDate
-        self.selectedServings = self.servingsDataStore[todayKey] ?? Array(repeating: 0, count: foodGroupsData.count)
+        let lastAccessedDate = defaults.string(forKey: UserDefaultsKeys.lastAccessedDate) ?? todayKey
+
+        if lastAccessedDate != todayKey {
+            self.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+            saveData(for: Date())
+        } else {
+            self.selectedServings = self.servingsDataStore[todayKey] ?? Array(repeating: 0, count: foodGroupsData.count)
+        }
+
+        updateLastAccessedDate()
+    }
+    
+    func checkAndUpdateDate() {
+        print("inside check and update")
+        let defaults = UserDefaults.standard
+        let todayKey = Date().formattedDate
+        let lastAccessedDate = defaults.string(forKey: UserDefaultsKeys.lastAccessedDate) ?? todayKey
+
+        saveData(for: currentDate)
+
+        if lastAccessedDate != todayKey {
+            self.currentDate = Date()
+
+            if let todayData = servingsDataStore[todayKey] {
+                self.selectedServings = todayData
+            } else {
+                self.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+                saveData(for: Date())
+            }
+        }
+        
+        updateLastAccessedDate()
+    }
+
+
+    private func updateLastAccessedDate() {
+        let defaults = UserDefaults.standard
+        let todayKey = Date().formattedDate
+        defaults.set(todayKey, forKey: UserDefaultsKeys.lastAccessedDate)
     }
 
 
@@ -58,14 +101,21 @@ class ViewModel: ObservableObject {
     }
     
     func sliderValueChanged(on date: Date) {
+        print("saving for slider change for " + date.formattedDate)
         saveData(for: date)
     }
     
     func clearAllData() {
         servingsDataStore = [:]
+
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: UserDefaultsKeys.servingsDataStore)
+        
+        currentDate = Date()
+
         selectedServings = Array(repeating: 0, count: foodGroupsData.count)
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.servingsDataStore)
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.selectedServings)
+
+        saveData(for: currentDate)
     }
 }
 
