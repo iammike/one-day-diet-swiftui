@@ -101,7 +101,6 @@ class ViewModel: ObservableObject {
     }
     
     func sliderValueChanged(on date: Date) {
-        print("saving for slider change for " + date.formattedDate)
         saveData(for: date)
     }
     
