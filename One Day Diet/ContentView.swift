@@ -20,6 +20,7 @@ struct ContentView: View {
                 HStack {
                     Text("One Day Diet")
                         .font(.largeTitle)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
                 
