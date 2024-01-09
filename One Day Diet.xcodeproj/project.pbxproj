@@ -17,6 +17,8 @@
 		EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC992B4B702900A30501 /* ViewModel.swift */; };
 		EF7BEC9C2B4B707900A30501 /* FoodGroupSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC9B2B4B707900A30501 /* FoodGroupSliderView.swift */; };
 		EF7BECA02B4B8CE400A30501 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC9F2B4B8CE400A30501 /* AboutView.swift */; };
+		EF88EDD72B4D99E4003D170E /* WhatsNewAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */; };
+		EF88EDD92B4DA1C8003D170E /* FaqView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88EDD82B4DA1C8003D170E /* FaqView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		EF7BEC992B4B702900A30501 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		EF7BEC9B2B4B707900A30501 /* FoodGroupSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGroupSliderView.swift; sourceTree = "<group>"; };
 		EF7BEC9F2B4B8CE400A30501 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewAlert.swift; sourceTree = "<group>"; };
+		EF88EDD82B4DA1C8003D170E /* FaqView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +106,12 @@
 			isa = PBXGroup;
 			children = (
 				EF7BEC9F2B4B8CE400A30501 /* AboutView.swift */,
+				EF88EDD82B4DA1C8003D170E /* FaqView.swift */,
 				EF47593B2B4A469100BCE0EA /* ContentView.swift */,
 				EF7BEC9B2B4B707900A30501 /* FoodGroupSliderView.swift */,
 				EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */,
 				EF7BEC992B4B702900A30501 /* ViewModel.swift */,
+				EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */,
 				EF47593D2B4A469400BCE0EA /* Assets.xcassets */,
 				EF47593F2B4A469400BCE0EA /* One_Day_Diet.entitlements */,
 				EF4759402B4A469400BCE0EA /* Preview Content */,
@@ -269,7 +275,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF47593C2B4A469100BCE0EA /* ContentView.swift in Sources */,
+				EF88EDD72B4D99E4003D170E /* WhatsNewAlert.swift in Sources */,
 				EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */,
+				EF88EDD92B4DA1C8003D170E /* FaqView.swift in Sources */,
 				EF4759672B4A4F7800BCE0EA /* FoodGroupsData.swift in Sources */,
 				EF7BECA02B4B8CE400A30501 /* AboutView.swift in Sources */,
 				EF7BEC9C2B4B707900A30501 /* FoodGroupSliderView.swift in Sources */,
@@ -430,7 +438,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "One Day Diet/One_Day_Diet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"One Day Diet/Preview Content\"";
 				DEVELOPMENT_TEAM = 9ED5E567X5;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -450,7 +458,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iammike.One-Day-Diet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -469,7 +477,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "One Day Diet/One_Day_Diet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"One Day Diet/Preview Content\"";
 				DEVELOPMENT_TEAM = 9ED5E567X5;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -489,7 +497,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iammike.One-Day-Diet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

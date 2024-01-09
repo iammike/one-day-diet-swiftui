@@ -15,11 +15,13 @@ struct AboutView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     
-                    Text("This app provides tracking for a diet system roughly based on one outlined in the book [Racing Weight: How to Get Lean for Peak Performance](https://www.goodreads.com/en/book/show/7192581) by Matt Fitzgerald. As translated, this diet is intended to simply get you eating healthier foods. Coupled with adequate exercise, weight loss will likely follow. To begin, eat what you consider to be \"well\" for a day, note that score, and aim for it each day.")
+                    Text("This app provides tracking for a diet system based roughly on one outlined in [Racing Weight: How to Get Lean for Peak Performance](https://www.goodreads.com/en/book/show/7192581) by Matt Fitzgerald. As translated, this diet is intended to simply get you eating healthier foods. Coupled with adequate exercise, weight loss will likely follow. To begin, eat what you consider to be \"well\" for a day or a few, note those scores, and there's your personal target.")
                     
                     Spacer()
                     
                     Text("Feedback and ideas are more than welcome! I'd love to add features.")
+                    
+                    Spacer()
                     
                     Link("🌐 My Website", destination: URL(string: "http://www.iammike.org")!)
                         .foregroundColor(.blue)
