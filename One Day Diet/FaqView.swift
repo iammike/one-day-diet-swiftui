@@ -31,7 +31,11 @@ struct FaqView: View {
                     
                     Spacer()
                     
-                    Text("**What is a refined grain?** It is breadlike and the first ingredient is not whole wheat.")
+                    Text("**What is a refined grain?** It is bread-like and the first ingredient is not whole wheat.")
+                    
+                    Spacer()
+                    
+                    Text("**What should x count as?** Use your best judgement, and again, consistency is all that's important.")
                     
                     Spacer()
                     
