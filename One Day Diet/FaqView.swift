@@ -35,7 +35,7 @@ struct FaqView: View {
                     
                     Spacer()
                     
-                    Text("**What should x count as?** Use your best judgement, and again, consistency is all that's important.")
+                    Text("**What should x, y, or z count as?** Use your best judgement, and again, consistency is all that's important.")
                     
                     Spacer()
                     
