@@ -40,10 +40,8 @@ struct FaqView: View {
                     Spacer()
                     
                     HStack {
-                        Spacer()
                         Link("✉️ More questions?", destination: URL(string: "mailto:iammikec@gmail.com")!)
                             .foregroundColor(.blue)
-                        Spacer()
                     }
                     
                 }

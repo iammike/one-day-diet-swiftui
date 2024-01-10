@@ -29,8 +29,21 @@ struct AboutView: View {
                     Link("✉️ Email Me", destination: URL(string: "mailto:iammikec@gmail.com")!)
                         .foregroundColor(.blue)
                     
-                }
-                .padding()
+                    Spacer()
+                    Spacer()
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        Image("MadeInVermont500px")
+                            .resizable()
+                            .opacity(0.5)
+                            .scaledToFit()
+                            .frame(width: UIScreen.main.bounds.width / 2.5)
+                        Spacer()
+                    }
+                
+                }.padding()
             }
             .navigationBarTitle("About", displayMode: .inline)
             .navigationBarItems(trailing: Button("Done") {
