@@ -39,7 +39,7 @@ struct AboutView: View {
                             .resizable()
                             .opacity(0.5)
                             .scaledToFit()
-                            .frame(width: UIScreen.main.bounds.width / 2.5)
+                            .frame(width: 200)
                         Spacer()
                     }
                 
