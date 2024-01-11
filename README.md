@@ -2,4 +2,4 @@ A simple diet tracking app I had written many moons ago, which didn't support au
 
 More information [on my personal site](https://www.iammike.org/?page_id=4559).
 
-[Check it out on the App Store](https://apps.apple.com/us/app/one-day-diet/id6475656051)https://apps.apple.com/us/app/one-day-diet/id6475656051!
+[Check it out on the App Store](https://apps.apple.com/us/app/one-day-diet/id6475656051)!
