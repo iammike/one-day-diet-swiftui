@@ -99,7 +99,7 @@ class ViewModel: ObservableObject {
         UserDefaults.standard.set(servingsDataStore, forKey: UserDefaultsKeys.servingsDataStore)
     }
     
-    func sliderValueChanged(on date: Date) {
+    func servingControlValueChanged(on date: Date) {
         saveData(for: date)
     }
     
