@@ -50,6 +50,7 @@
 		EF4759552B4A469500BCE0EA /* One_Day_DietUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_Day_DietUITests.swift; sourceTree = "<group>"; };
 		EF4759572B4A469500BCE0EA /* One_Day_DietUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_Day_DietUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGroupsData.swift; sourceTree = "<group>"; };
+		EF7A9CA32B5065DB000C1A34 /* One-Day-Diet-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "One-Day-Diet-Info.plist"; sourceTree = SOURCE_ROOT; };
 		EF7BEC992B4B702900A30501 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		EF7BEC9F2B4B8CE400A30501 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewAlert.swift; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				EF4759382B4A469100BCE0EA /* One Day Diet */,
+				EF7A9CA32B5065DB000C1A34 /* One-Day-Diet-Info.plist */,
 				EF47594A2B4A469500BCE0EA /* One Day DietTests */,
 				EF4759542B4A469500BCE0EA /* One Day DietUITests */,
 				EF4759372B4A469100BCE0EA /* Products */,
@@ -447,6 +449,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "One-Day-Diet-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "One Day Diet";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -491,6 +494,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "One-Day-Diet-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "One Day Diet";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
