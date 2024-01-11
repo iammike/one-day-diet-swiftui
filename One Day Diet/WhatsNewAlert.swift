@@ -27,7 +27,7 @@ struct WhatsNewAlert {
                             """
                             🎛️ New method to control serving counts
                             👷 Cool new image in About
-                            🙋 Added a Q/A to FAQ
+                            🙋 Added a Q&A to FAQ
                             🏹 Added arrows to control date
                             💻 Added Mac support
                             
