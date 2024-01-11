@@ -35,7 +35,7 @@ struct FaqView: View {
                     
                     Spacer()
                     
-                    Text("**What should x, y, or z count as?** Use your best judgement, and again, consistency is all that's important.")
+                    Text("**What should x, y, or z count as?** Use your best judgement, and again, consistency is all that's important. If something is made up of three parts from different categories, but only a single serving, only log a single serving. Which? Whichever matches how you feel this whole should count.")
                     
                     Spacer()
                     
