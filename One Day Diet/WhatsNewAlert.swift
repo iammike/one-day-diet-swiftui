@@ -25,16 +25,15 @@ struct WhatsNewAlert {
     func getVersionAlert() -> Alert {
         let bulletedList = 
                             """
-                            🎆 Bolded app title
-                            🪄 Added this new version alert
-                            🙋 Added a FAQ to the menu
-                            🌶️ Menu: New icon, design, and inline icons
-                            🗓️ Adjusted logic to determine when to switch to a new day
-                            🎨 Adjusted some food group icons
+                            🎛️ New method to control serving counts
+                            👷 Cool new image in About
+                            🙋 Added a Q/A to FAQ
+                            
+                            There have been many requests for more 🍆 in the app. I don't know what that's about, but I'm ignoring them for now.
                             """
         
         return Alert(
-            title: Text("What's New in \(currentVersion)!"),
+            title: Text("What's New in \(currentVersion)?"),
             message: Text("\n\(bulletedList)"),
             dismissButton: .default(Text("OK"))
         )
