@@ -61,9 +61,9 @@ struct ContentView: View {
             
             List {
                 ForEach(0..<foodGroupsData.count, id: \.self) { index in
-                    FoodGroupSliderView(foodGroup: foodGroupsData[index], serving: $viewModel.selectedServings[index])
+                    FoodGroupStepperView(foodGroup: foodGroupsData[index], serving: $viewModel.selectedServings[index])
                         .onReceive(viewModel.$selectedServings) { _ in
-                            viewModel.sliderValueChanged(on: viewModel.currentDate)
+                            viewModel.servingControlValueChanged(on: viewModel.currentDate)
                         }
                 }
             }
