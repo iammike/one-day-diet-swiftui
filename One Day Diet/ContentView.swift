@@ -27,10 +27,12 @@ struct ContentView: View {
         VStack {
             ZStack {
                 HStack {
+                #if !targetEnvironment(macCatalyst)
                     Text("One Day Diet")
                         .font(.largeTitle)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .frame(maxWidth: .infinity, alignment: .center)
+                #endif
                 }
                 
                 HStack {
@@ -45,19 +47,44 @@ struct ContentView: View {
                     } label: {
                         Image(systemName: "ellipsis.circle")
                             .font(.title2)
+                            .opacity(0.9)
                     }
-                }.padding(.trailing, 36)
-            }
-            
-            DatePicker("", selection: $viewModel.currentDate, displayedComponents: .date)
-                .onChange(of: viewModel.currentDate) { oldValue, newValue in
-                    viewModel.updateData(for: newValue)
                 }
-                .labelsHidden()
-                .padding(.bottom, 10)
+                #if !targetEnvironment(macCatalyst)
+                .padding(.trailing, 36)
+                #endif
+            }
+            #if targetEnvironment(macCatalyst)
+            .padding()
+            #endif
+            
+            HStack {
+                Button(action: {
+                    viewModel.currentDate = Calendar.current.date(byAdding: .day, value: -1, to: viewModel.currentDate) ?? viewModel.currentDate
+                }) {
+                    Image(systemName: "arrow.left")
+                        .opacity(0.9)
+                }.padding()
+                
+                DatePicker("", selection: $viewModel.currentDate, in: ...Date(), displayedComponents: .date)
+                    .onChange(of: viewModel.currentDate) { oldValue, newValue in
+                        viewModel.updateData(for: newValue)
+                    }
+                    .labelsHidden()
+                
+                Button(action: {
+                    viewModel.currentDate = Calendar.current.date(byAdding: .day, value: 1, to: viewModel.currentDate) ?? viewModel.currentDate
+                }) {
+                    Image(systemName: "arrow.right")
+                        .opacity(Calendar.current.isDateInToday(viewModel.currentDate) ? 0 : 0.9)
+                }
+                .disabled(Calendar.current.isDateInToday(viewModel.currentDate))
+                .padding()
+            }
+            .padding(.bottom, 10)
             
             Text("Total Score: \(viewModel.calculateTotalScore())").font(.title)
-//            Text("Servings: \(viewModel.calculateTotalServings())").font(.body)
+            //            Text("Servings: \(viewModel.calculateTotalServings())").font(.body)
             
             List {
                 ForEach(0..<foodGroupsData.count, id: \.self) { index in

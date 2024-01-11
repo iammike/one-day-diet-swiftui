@@ -28,8 +28,10 @@ struct WhatsNewAlert {
                             🎛️ New method to control serving counts
                             👷 Cool new image in About
                             🙋 Added a Q/A to FAQ
+                            🏹 Added arrows to control date
+                            💻 Added Mac support
                             
-                            There have been many requests for more 🍆 in the app. I don't know what that's about, but I'm ignoring them for now.
+                            There have been many requests for more 🍆 in the app. I don't know what that's all about, but I'm ignoring them for now.
                             """
         
         return Alert(
