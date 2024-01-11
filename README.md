@@ -2,6 +2,4 @@ A simple diet tracking app I had written many moons ago, which didn't support au
 
 More information [on my personal site](https://www.iammike.org/?page_id=4559).
 
-<p align="center">
-  <img src="https://www.iammike.org/wp-content/uploads/2024/01/Simulator-Screenshot-iPhone-15-Plus-2024-01-08-at-08.25.10-940x2037.png" width="400" />
-</p>
+[Check it out on the App Store](https://apps.apple.com/us/app/one-day-diet/id6475656051)https://apps.apple.com/us/app/one-day-diet/id6475656051!
