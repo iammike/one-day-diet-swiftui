@@ -106,7 +106,7 @@ struct ContentView: View {
                 }
 
                 if showMacros {
-                    Text("MACROS / NOT SCORED")
+                    Text("M A C R O S  ( N O T  S C O R E D )")
                         .foregroundStyle(Color.gray)
 
                     ForEach(0..<trackablesData.count, id: \.self) { index in
