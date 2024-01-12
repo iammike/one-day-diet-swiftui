@@ -31,7 +31,15 @@ struct FaqView: View {
                     
                     Spacer()
                     
-                    Text("**What is a refined grain?** It is breadlike and the first ingredient is not whole wheat.")
+                    Text("**What is a refined grain?** It is bread-like and the first ingredient is not whole wheat.")
+                    
+                    Spacer()
+                    
+                    Text("**What should x, y, or z count as?** Use your best judgement, and again, consistency is all that's important.")
+                    
+                    Spacer()
+                    
+                    Text("**X food is made up of three different things, but its quantity is only one serving. How do I log it?** Use your best judgement based on the points you think it should earn or cost. If you can choose a group that aligns fairly well with what is contained in the food, even better.")
                     
                     Spacer()
                     
@@ -40,10 +48,8 @@ struct FaqView: View {
                     Spacer()
                     
                     HStack {
-                        Spacer()
                         Link("✉️ More questions?", destination: URL(string: "mailto:iammikec@gmail.com")!)
                             .foregroundColor(.blue)
-                        Spacer()
                     }
                     
                 }

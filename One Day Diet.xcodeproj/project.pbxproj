@@ -15,10 +15,10 @@
 		EF4759582B4A469500BCE0EA /* One_Day_DietUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4759572B4A469500BCE0EA /* One_Day_DietUITestsLaunchTests.swift */; };
 		EF4759672B4A4F7800BCE0EA /* FoodGroupsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */; };
 		EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC992B4B702900A30501 /* ViewModel.swift */; };
-		EF7BEC9C2B4B707900A30501 /* FoodGroupSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC9B2B4B707900A30501 /* FoodGroupSliderView.swift */; };
 		EF7BECA02B4B8CE400A30501 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC9F2B4B8CE400A30501 /* AboutView.swift */; };
 		EF88EDD72B4D99E4003D170E /* WhatsNewAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */; };
 		EF88EDD92B4DA1C8003D170E /* FaqView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88EDD82B4DA1C8003D170E /* FaqView.swift */; };
+		EF8C46C62B50268600CCF023 /* FoodGroupStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C46C52B50268600CCF023 /* FoodGroupStepperView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,11 +50,12 @@
 		EF4759552B4A469500BCE0EA /* One_Day_DietUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_Day_DietUITests.swift; sourceTree = "<group>"; };
 		EF4759572B4A469500BCE0EA /* One_Day_DietUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_Day_DietUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGroupsData.swift; sourceTree = "<group>"; };
+		EF7A9CA32B5065DB000C1A34 /* One-Day-Diet-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "One-Day-Diet-Info.plist"; sourceTree = SOURCE_ROOT; };
 		EF7BEC992B4B702900A30501 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		EF7BEC9B2B4B707900A30501 /* FoodGroupSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGroupSliderView.swift; sourceTree = "<group>"; };
 		EF7BEC9F2B4B8CE400A30501 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewAlert.swift; sourceTree = "<group>"; };
 		EF88EDD82B4DA1C8003D170E /* FaqView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqView.swift; sourceTree = "<group>"; };
+		EF8C46C52B50268600CCF023 /* FoodGroupStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGroupStepperView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				EF4759382B4A469100BCE0EA /* One Day Diet */,
+				EF7A9CA32B5065DB000C1A34 /* One-Day-Diet-Info.plist */,
 				EF47594A2B4A469500BCE0EA /* One Day DietTests */,
 				EF4759542B4A469500BCE0EA /* One Day DietUITests */,
 				EF4759372B4A469100BCE0EA /* Products */,
@@ -108,7 +110,7 @@
 				EF7BEC9F2B4B8CE400A30501 /* AboutView.swift */,
 				EF88EDD82B4DA1C8003D170E /* FaqView.swift */,
 				EF47593B2B4A469100BCE0EA /* ContentView.swift */,
-				EF7BEC9B2B4B707900A30501 /* FoodGroupSliderView.swift */,
+				EF8C46C52B50268600CCF023 /* FoodGroupStepperView.swift */,
 				EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */,
 				EF7BEC992B4B702900A30501 /* ViewModel.swift */,
 				EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */,
@@ -208,7 +210,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					EF4759352B4A469100BCE0EA = {
 						CreatedOnToolsVersion = 15.1;
@@ -274,13 +276,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF8C46C62B50268600CCF023 /* FoodGroupStepperView.swift in Sources */,
 				EF47593C2B4A469100BCE0EA /* ContentView.swift in Sources */,
 				EF88EDD72B4D99E4003D170E /* WhatsNewAlert.swift in Sources */,
 				EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */,
 				EF88EDD92B4DA1C8003D170E /* FaqView.swift in Sources */,
 				EF4759672B4A4F7800BCE0EA /* FoodGroupsData.swift in Sources */,
 				EF7BECA02B4B8CE400A30501 /* AboutView.swift in Sources */,
-				EF7BEC9C2B4B707900A30501 /* FoodGroupSliderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +353,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -412,6 +415,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -438,32 +442,38 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "One Day Diet/One_Day_Diet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 12;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"One Day Diet/Preview Content\"";
 				DEVELOPMENT_TEAM = 9ED5E567X5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "One-Day-Diet-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "One Day Diet";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iammike.One-Day-Diet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -477,32 +487,38 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "One Day Diet/One_Day_Diet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 12;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"One Day Diet/Preview Content\"";
 				DEVELOPMENT_TEAM = 9ED5E567X5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "One-Day-Diet-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "One Day Diet";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iammike.One-Day-Diet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -516,6 +532,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9ED5E567X5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -539,6 +556,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9ED5E567X5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -561,6 +579,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9ED5E567X5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -583,6 +602,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9ED5E567X5;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
