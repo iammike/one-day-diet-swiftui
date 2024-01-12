@@ -86,7 +86,6 @@ struct ContentView: View {
             .padding(.bottom, 10)
             
             Text("Total Score: \(viewModel.calculateTotalScore())").font(.title)
-            //            Text("Servings: \(viewModel.calculateTotalServings())").font(.body)
             
             List {
                 ForEach(0..<foodGroupsData.count, id: \.self) { index in
@@ -95,7 +94,13 @@ struct ContentView: View {
                             viewModel.servingControlValueChanged(on: viewModel.currentDate)
                         }
                 }
-            }
+                ForEach(0..<trackablesData.count, id: \.self) { index in
+                    TrackableStepperView(trackable: trackablesData[index], servings: $viewModel.selectedTrackableServings[index])
+                        .onReceive(viewModel.$selectedTrackableServings) { _ in
+                            viewModel.servingControlValueChanged(on: viewModel.currentDate)
+                        }
+                }
+             }
         }
         
         .onAppear {
@@ -131,10 +136,8 @@ struct ContentView: View {
             }
         }
         
-        .onChange(of: scenePhase) {
-            if scenePhase == .active {
-                viewModel.checkAndUpdateDate()
-            }
+        .onDisappear {
+            viewModel.saveData(for: viewModel.currentDate)
         }
     }
 }

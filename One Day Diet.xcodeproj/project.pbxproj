@@ -14,6 +14,8 @@
 		EF4759562B4A469500BCE0EA /* One_Day_DietUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4759552B4A469500BCE0EA /* One_Day_DietUITests.swift */; };
 		EF4759582B4A469500BCE0EA /* One_Day_DietUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4759572B4A469500BCE0EA /* One_Day_DietUITestsLaunchTests.swift */; };
 		EF4759672B4A4F7800BCE0EA /* FoodGroupsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */; };
+		EF6DFB652B50E015004B376A /* TrackablesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6DFB642B50E015004B376A /* TrackablesData.swift */; };
+		EF6DFB672B50E137004B376A /* TrackableStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6DFB662B50E137004B376A /* TrackableStepperView.swift */; };
 		EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC992B4B702900A30501 /* ViewModel.swift */; };
 		EF7BECA02B4B8CE400A30501 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC9F2B4B8CE400A30501 /* AboutView.swift */; };
 		EF88EDD72B4D99E4003D170E /* WhatsNewAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */; };
@@ -50,6 +52,8 @@
 		EF4759552B4A469500BCE0EA /* One_Day_DietUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_Day_DietUITests.swift; sourceTree = "<group>"; };
 		EF4759572B4A469500BCE0EA /* One_Day_DietUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_Day_DietUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGroupsData.swift; sourceTree = "<group>"; };
+		EF6DFB642B50E015004B376A /* TrackablesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackablesData.swift; sourceTree = "<group>"; };
+		EF6DFB662B50E137004B376A /* TrackableStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableStepperView.swift; sourceTree = "<group>"; };
 		EF7A9CA32B5065DB000C1A34 /* One-Day-Diet-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "One-Day-Diet-Info.plist"; sourceTree = SOURCE_ROOT; };
 		EF7BEC992B4B702900A30501 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		EF7BEC9F2B4B8CE400A30501 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -111,8 +115,10 @@
 				EF88EDD82B4DA1C8003D170E /* FaqView.swift */,
 				EF47593B2B4A469100BCE0EA /* ContentView.swift */,
 				EF8C46C52B50268600CCF023 /* FoodGroupStepperView.swift */,
+				EF6DFB662B50E137004B376A /* TrackableStepperView.swift */,
 				EF4759662B4A4F7800BCE0EA /* FoodGroupsData.swift */,
 				EF7BEC992B4B702900A30501 /* ViewModel.swift */,
+				EF6DFB642B50E015004B376A /* TrackablesData.swift */,
 				EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */,
 				EF47593D2B4A469400BCE0EA /* Assets.xcassets */,
 				EF47593F2B4A469400BCE0EA /* One_Day_Diet.entitlements */,
@@ -278,6 +284,8 @@
 			files = (
 				EF8C46C62B50268600CCF023 /* FoodGroupStepperView.swift in Sources */,
 				EF47593C2B4A469100BCE0EA /* ContentView.swift in Sources */,
+				EF6DFB652B50E015004B376A /* TrackablesData.swift in Sources */,
+				EF6DFB672B50E137004B376A /* TrackableStepperView.swift in Sources */,
 				EF88EDD72B4D99E4003D170E /* WhatsNewAlert.swift in Sources */,
 				EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */,
 				EF88EDD92B4DA1C8003D170E /* FaqView.swift in Sources */,
