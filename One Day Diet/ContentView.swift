@@ -155,6 +155,13 @@ struct ContentView: View {
         .onDisappear {
             viewModel.saveData(for: viewModel.currentDate)
         }
+
+        // Updates to today if you last launched the app yesterday
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                viewModel.checkAndUpdateDate()
+            }
+        }
     }
 }
 
