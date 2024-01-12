@@ -13,8 +13,6 @@ struct TrackableStepperView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("\(trackable.emoji) \(trackable.name)")
-
             Stepper(
                 onIncrement: {
                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
@@ -28,7 +26,7 @@ struct TrackableStepperView: View {
                 },
                 label: {
                     let totalUnits = servings * trackable.unitsPerServing
-                    Text("\(trackable.label)\(totalUnits)")
+                    Text("\(trackable.emoji) \(trackable.name): \(totalUnits)\(trackable.unit)")
                 }
             )
         }

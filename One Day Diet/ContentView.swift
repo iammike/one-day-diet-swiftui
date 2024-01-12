@@ -15,11 +15,16 @@ enum ActiveAlert: Identifiable {
     }
 }
 
+extension UserDefaultsKeys {
+    static let showMacrosKey = "showMacros"
+}
+
 struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
     @Environment(\.scenePhase) private var scenePhase
     @State private var showAboutSheet = false
     @State private var showFaqSheet = false
+    @State private var showMacros: Bool = UserDefaults.standard.bool(forKey: UserDefaultsKeys.showMacrosKey)
     @State private var activeAlert: ActiveAlert?
     private var whatsNewAlert = WhatsNewAlert()
     
@@ -41,6 +46,11 @@ struct ContentView: View {
                         Button("😎 What's New?") { activeAlert = .versionAlert }
                         Button("🙋 FAQ") { showFaqSheet = true }
                         Button("ℹ️ About") { showAboutSheet = true }
+                        Divider()
+                        Button(showMacros ? "🧪 Hide Macro Tracking " : "🧪 Show Macro Tracking") {
+                            showMacros.toggle()
+                            UserDefaults.standard.set(showMacros, forKey: UserDefaultsKeys.showMacrosKey)
+                        }
                         Divider()
                         Button("🧼 Clear Visible Data", action: { viewModel.resetServings(for: viewModel.currentDate) })
                         Button("💣 Clear All Data") { activeAlert = .resetDataAlert }
@@ -94,11 +104,17 @@ struct ContentView: View {
                             viewModel.servingControlValueChanged(on: viewModel.currentDate)
                         }
                 }
-                ForEach(0..<trackablesData.count, id: \.self) { index in
-                    TrackableStepperView(trackable: trackablesData[index], servings: $viewModel.selectedTrackableServings[index])
-                        .onReceive(viewModel.$selectedTrackableServings) { _ in
-                            viewModel.servingControlValueChanged(on: viewModel.currentDate)
-                        }
+
+                if showMacros {
+                    Text("MACROS / NOT SCORED")
+                        .foregroundStyle(Color.gray)
+
+                    ForEach(0..<trackablesData.count, id: \.self) { index in
+                        TrackableStepperView(trackable: trackablesData[index], servings: $viewModel.selectedTrackableServings[index])
+                            .onReceive(viewModel.$selectedTrackableServings) { _ in
+                                viewModel.servingControlValueChanged(on: viewModel.currentDate)
+                            }
+                    }
                 }
              }
         }
