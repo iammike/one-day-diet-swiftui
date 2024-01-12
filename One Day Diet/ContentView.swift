@@ -61,6 +61,7 @@ struct ContentView: View {
             HStack {
                 Button(action: {
                     viewModel.currentDate = Calendar.current.date(byAdding: .day, value: -1, to: viewModel.currentDate) ?? viewModel.currentDate
+                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                 }) {
                     Image(systemName: "arrow.left")
                         .opacity(0.9)
@@ -74,6 +75,7 @@ struct ContentView: View {
                 
                 Button(action: {
                     viewModel.currentDate = Calendar.current.date(byAdding: .day, value: 1, to: viewModel.currentDate) ?? viewModel.currentDate
+                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                 }) {
                     Image(systemName: "arrow.right")
                         .opacity(Calendar.current.isDateInToday(viewModel.currentDate) ? 0 : 0.9)

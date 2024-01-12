@@ -42,6 +42,10 @@ struct FaqView: View {
                     Text("**X food is made up of three different things, but its quantity is only one serving. How do I log it?** Use your best judgement based on the points you think it should earn or cost. If you can choose a group that aligns fairly well with what is contained in the food, even better.")
                     
                     Spacer()
+
+                    Text("**What if I don't quite eat two servings of something, but definitely more than one?** Round up, round down, use that decision to guide your next similar choice. It'll all come out in the wash.")
+
+                    Spacer()
                     
                     Text("**What's a good number of points per day?** That's for you to figure out. Spend a day or a few eating well and you'll arrive at a rough target. Remember, this is not a weight-loss diet. The amount you eat depends on external factors.")
                     
