@@ -31,6 +31,8 @@ struct WhatsNewAlert {
 
                             🙋 Added yet another Q&A to FAQ. These are all from my wife.
 
+                            🐣 Easter eggs! Catch 'em all!
+
                             Still getting those requests to make 🍆 the vegetable. Still ignoring them.
                             """
         
