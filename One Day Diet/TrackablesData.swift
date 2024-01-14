@@ -14,7 +14,7 @@ struct Trackable {
 
 let trackablesData: [Trackable] = [
     Trackable(name: "Water", unit: "oz", unitsPerServing: 4, emoji: "💧"),
-    Trackable(name: "Carbs", unit: "g", unitsPerServing: 5, emoji: "⛽"),
-    Trackable(name: "Protein", unit: "g", unitsPerServing: 5, emoji: "💪"),
+    Trackable(name: "Carbs", unit: "g", unitsPerServing: 4, emoji: "⛽"),
+    Trackable(name: "Protein", unit: "g", unitsPerServing: 4, emoji: "💪"),
     Trackable(name: "Fat", unit: "g", unitsPerServing: 2, emoji: "🥑")
 ]

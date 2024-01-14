@@ -30,9 +30,7 @@ struct AboutView: View {
                     
                     Link("✉️ Email Me", destination: URL(string: "mailto:iammikec@gmail.com")!)
                         .foregroundColor(.blue)
-                    
-                    Spacer()
-                    
+                                        
                     HStack {
                         Spacer()
                         Image("MadeInVermont500px")
