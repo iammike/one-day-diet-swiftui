@@ -25,13 +25,15 @@ struct WhatsNewAlert {
     func getVersionAlert() -> Alert {
         let bulletedList = 
                             """
-                            🎛️ New method to control serving counts
-                            👷 Cool new image in About
-                            🙋 Added a Q&A to FAQ
-                            🏹 Added arrows to control date
-                            💻 Added Mac support
-                            
-                            There have been many requests for more 🍆 in the app. I don't know what that's all about, but I'm ignoring them for now.
+                            🧪 Macro tracking! Hidden by default, these are unscored and can be enabled via the menu.
+
+                            👆 Haptic feedback makes your taps more obvious. Must be enabled in your system settings.
+
+                            🙋 Added yet another Q&A to FAQ. These are all from my wife.
+
+                            🐣 Easter eggs! Catch 'em all!
+
+                            Still getting those requests to make 🍆 the vegetable. Still ignoring them.
                             """
         
         return Alert(

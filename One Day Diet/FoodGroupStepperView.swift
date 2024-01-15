@@ -18,11 +18,13 @@ struct FoodGroupStepperView: View {
             Stepper(
                 onIncrement: {
                     if serving < foodGroup.scores.count - 1 {
+                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         serving += 1
                     }
                 },
                 onDecrement: {
                     if serving > 0 {
+                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         serving -= 1
                     }
                 },
@@ -36,9 +38,8 @@ struct FoodGroupStepperView: View {
             let nextIndex = serving + 1
             let scoreChangeByNextServing = nextIndex < foodGroup.scores.count ? foodGroup.scores[nextIndex] - currentScore : 0
 
-            Text("Effect of Next Serving: \(scoreChangeByNextServing > 0 ? "+\(scoreChangeByNextServing)" : "\(scoreChangeByNextServing)")")
+            Text(serving == foodGroup.scores.count - 1 ? foodGroup.maxServingMessage : "Effect of Next Serving: \(scoreChangeByNextServing)")
                 .foregroundColor(scoreChangeByNextServing < 0 ? .red : (scoreChangeByNextServing > 0 ? .green : .primary))
-                .opacity(serving == foodGroup.scores.count - 1 ? 0 : 1)
         }
     }
 }

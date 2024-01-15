@@ -8,68 +8,54 @@
 import SwiftUI
 
 struct UserDefaultsKeys {
-    static let selectedServings = "selectedServings"
     static let servingsDataStore = "servingsDataStore"
     static let lastAccessedDate = "lastAccessedDate"
 }
 
 class ViewModel: ObservableObject {
     @Published var selectedServings: [Int]
+    @Published var selectedTrackableServings: [Int]
     @Published var currentDate: Date = Date()
     private var servingsDataStore: [String: [Int]] = [:]
 
     init() {
-        let defaults = UserDefaults.standard
-        self.selectedServings = defaults.array(forKey: UserDefaultsKeys.selectedServings) as? [Int] ?? Array(repeating: 0, count: foodGroupsData.count)
+        self.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        self.selectedTrackableServings = Array(repeating: 0, count: trackablesData.count)
 
-        if let storedData = defaults.object(forKey: UserDefaultsKeys.servingsDataStore) as? [String: [Int]] {
-            self.servingsDataStore = storedData
-        }
+        let defaults = UserDefaults.standard
+
+        self.servingsDataStore = defaults.object(forKey: UserDefaultsKeys.servingsDataStore) as? [String: [Int]] ?? [:]
 
         let todayKey = Date().formattedDate
         let lastAccessedDate = defaults.string(forKey: UserDefaultsKeys.lastAccessedDate) ?? todayKey
 
         if lastAccessedDate != todayKey {
-            self.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
-            saveData(for: Date())
+            resetServings(for: Date())
         } else {
-            self.selectedServings = self.servingsDataStore[todayKey] ?? Array(repeating: 0, count: foodGroupsData.count)
+            loadServings(for: todayKey)
         }
-
         updateLastAccessedDate()
     }
     
     func checkAndUpdateDate() {
-        let defaults = UserDefaults.standard
         let todayKey = Date().formattedDate
-        let lastAccessedDate = defaults.string(forKey: UserDefaultsKeys.lastAccessedDate) ?? todayKey
-
-        saveData(for: currentDate)
+        let lastAccessedDate = UserDefaults.standard.string(forKey: UserDefaultsKeys.lastAccessedDate) ?? todayKey
 
         if lastAccessedDate != todayKey {
-            self.currentDate = Date()
-
-            if let todayData = servingsDataStore[todayKey] {
-                self.selectedServings = todayData
-            } else {
-                self.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
-                saveData(for: Date())
-            }
+            currentDate = Date()
+            resetServings(for: currentDate)
         }
-        
         updateLastAccessedDate()
     }
 
-
     private func updateLastAccessedDate() {
-        let defaults = UserDefaults.standard
         let todayKey = Date().formattedDate
-        defaults.set(todayKey, forKey: UserDefaultsKeys.lastAccessedDate)
+        UserDefaults.standard.set(todayKey, forKey: UserDefaultsKeys.lastAccessedDate)
     }
-
 
     func resetServings(for date: Date) {
         selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        selectedTrackableServings = Array(repeating: 0, count: trackablesData.count)
         saveData(for: date)
     }
 
@@ -78,42 +64,33 @@ class ViewModel: ObservableObject {
             total + foodGroupsData[index.offset].scores[index.element]
         }
     }
-    
-//    func calculateTotalServings() -> Int {
-//        selectedServings.reduce(0, +)
-//    }
 
     func updateData(for date: Date) {
         let dateKey = date.formattedDate
-        if let savedData = servingsDataStore[dateKey] {
-            selectedServings = savedData
-        } else {
-            resetServings(for: date)
-        }
+        loadServings(for: dateKey)
         saveData(for: date)
     }
 
     func saveData(for date: Date) {
         let dateKey = date.formattedDate
         servingsDataStore[dateKey] = selectedServings
+        servingsDataStore["trackable_\(dateKey)"] = selectedTrackableServings
         UserDefaults.standard.set(servingsDataStore, forKey: UserDefaultsKeys.servingsDataStore)
     }
-    
+
     func servingControlValueChanged(on date: Date) {
         saveData(for: date)
     }
-    
+
     func clearAllData() {
         servingsDataStore = [:]
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.servingsDataStore)
+        resetServings(for: Date())
+    }
 
-        let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: UserDefaultsKeys.servingsDataStore)
-        
-        currentDate = Date()
-
-        selectedServings = Array(repeating: 0, count: foodGroupsData.count)
-
-        saveData(for: currentDate)
+    private func loadServings(for dateKey: String) {
+        selectedServings = servingsDataStore[dateKey] ?? Array(repeating: 0, count: foodGroupsData.count)
+        selectedTrackableServings = servingsDataStore["trackable_\(dateKey)"] ?? Array(repeating: 0, count: trackablesData.count)
     }
 }
 
@@ -124,4 +101,3 @@ extension Date {
         return formatter.string(from: self)
     }
 }
-

@@ -15,11 +15,16 @@ enum ActiveAlert: Identifiable {
     }
 }
 
+extension UserDefaultsKeys {
+    static let showMacrosKey = "showMacros"
+}
+
 struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
     @Environment(\.scenePhase) private var scenePhase
     @State private var showAboutSheet = false
     @State private var showFaqSheet = false
+    @State private var showMacros: Bool = UserDefaults.standard.bool(forKey: UserDefaultsKeys.showMacrosKey)
     @State private var activeAlert: ActiveAlert?
     private var whatsNewAlert = WhatsNewAlert()
     
@@ -42,6 +47,11 @@ struct ContentView: View {
                         Button("🙋 FAQ") { showFaqSheet = true }
                         Button("ℹ️ About") { showAboutSheet = true }
                         Divider()
+                        Button(showMacros ? "🧪 Hide Macro Tracking " : "🧪 Show Macro Tracking") {
+                            showMacros.toggle()
+                            UserDefaults.standard.set(showMacros, forKey: UserDefaultsKeys.showMacrosKey)
+                        }
+                        Divider()
                         Button("🧼 Clear Visible Data", action: { viewModel.resetServings(for: viewModel.currentDate) })
                         Button("💣 Clear All Data") { activeAlert = .resetDataAlert }
                     } label: {
@@ -61,6 +71,7 @@ struct ContentView: View {
             HStack {
                 Button(action: {
                     viewModel.currentDate = Calendar.current.date(byAdding: .day, value: -1, to: viewModel.currentDate) ?? viewModel.currentDate
+                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                 }) {
                     Image(systemName: "arrow.left")
                         .opacity(0.9)
@@ -74,6 +85,7 @@ struct ContentView: View {
                 
                 Button(action: {
                     viewModel.currentDate = Calendar.current.date(byAdding: .day, value: 1, to: viewModel.currentDate) ?? viewModel.currentDate
+                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                 }) {
                     Image(systemName: "arrow.right")
                         .opacity(Calendar.current.isDateInToday(viewModel.currentDate) ? 0 : 0.9)
@@ -84,7 +96,6 @@ struct ContentView: View {
             .padding(.bottom, 10)
             
             Text("Total Score: \(viewModel.calculateTotalScore())").font(.title)
-            //            Text("Servings: \(viewModel.calculateTotalServings())").font(.body)
             
             List {
                 ForEach(0..<foodGroupsData.count, id: \.self) { index in
@@ -93,7 +104,19 @@ struct ContentView: View {
                             viewModel.servingControlValueChanged(on: viewModel.currentDate)
                         }
                 }
-            }
+
+                if showMacros {
+                    Text("MACROS (NOT SCORED)")
+                        .foregroundStyle(Color.gray)
+
+                    ForEach(0..<trackablesData.count, id: \.self) { index in
+                        TrackableStepperView(trackable: trackablesData[index], servings: $viewModel.selectedTrackableServings[index])
+                            .onReceive(viewModel.$selectedTrackableServings) { _ in
+                                viewModel.servingControlValueChanged(on: viewModel.currentDate)
+                            }
+                    }
+                }
+             }
         }
         
         .onAppear {
@@ -129,6 +152,11 @@ struct ContentView: View {
             }
         }
         
+        .onDisappear {
+            viewModel.saveData(for: viewModel.currentDate)
+        }
+
+        // Updates to today if you last launched the app yesterday
         .onChange(of: scenePhase) {
             if scenePhase == .active {
                 viewModel.checkAndUpdateDate()
