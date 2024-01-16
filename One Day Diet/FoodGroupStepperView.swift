@@ -38,7 +38,9 @@ struct FoodGroupStepperView: View {
             let nextIndex = serving + 1
             let scoreChangeByNextServing = nextIndex < foodGroup.scores.count ? foodGroup.scores[nextIndex] - currentScore : 0
 
-            Text(serving == foodGroup.scores.count - 1 ? foodGroup.maxServingMessage : "Effect of Next Serving: \(scoreChangeByNextServing)")
+            Text(serving == foodGroup.scores.count - 1 ?
+                 foodGroup.maxServingMessage :
+                 "Effect of Next Serving: \(scoreChangeByNextServing > 0 ? "+\(scoreChangeByNextServing)" : "\(scoreChangeByNextServing)")")
                 .foregroundColor(scoreChangeByNextServing < 0 ? .red : (scoreChangeByNextServing > 0 ? .green : .primary))
         }
     }
