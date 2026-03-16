@@ -43,6 +43,8 @@ struct FaqView: View {
 
                     Text("**What's a good number of points per day?** That's for you to figure out. Spend a day or a few eating well and you'll arrive at a rough target. Remember, this is not a weight-loss diet. The amount you eat depends on external factors.")
 
+                    Text("**Why doesn't every day appear in my stats?** Days with very few logged servings are considered incomplete and filtered out. The threshold adapts based on your typical usage — once you have a week of data, it uses the median of your daily totals to decide what counts.")
+
                     Divider()
 
                     Text("About")
