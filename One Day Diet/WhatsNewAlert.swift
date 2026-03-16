@@ -10,29 +10,23 @@ import SwiftUI
 struct WhatsNewAlert {
     private let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "Unknown"
 
+    private var bulletedList: String {
+        """
+        👈👉 Swipe left or right on the date area to change days.
+        """
+    }
+
+    var versionTitle: String { "What's New in \(currentVersion)?" }
+    var versionMessage: String { "\n\(bulletedList)" }
+
     func shouldShowAlert() -> Bool {
         let defaults = UserDefaults.standard
-        let lastVersionPromptedForReview = defaults.string(forKey: "lastVersionPromptedForReview")
+        let lastVersionPromptedForReview = defaults.string(forKey: UserDefaultsKeys.lastVersionPromptedForReview)
 
         if lastVersionPromptedForReview != currentVersion {
-            defaults.set(currentVersion, forKey: "lastVersionPromptedForReview")
+            defaults.set(currentVersion, forKey: UserDefaultsKeys.lastVersionPromptedForReview)
             return true
         }
         return false
     }
-
-
-    func getVersionAlert() -> Alert {
-        let bulletedList =
-                            """
-                            👈👉 Swipe left or right on the date area to change days.
-                            """
-        
-        return Alert(
-            title: Text("What's New in \(currentVersion)?"),
-            message: Text("\n\(bulletedList)"),
-            dismissButton: .default(Text("OK"))
-        )
-    }
 }
-
