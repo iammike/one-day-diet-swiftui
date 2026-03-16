@@ -186,10 +186,10 @@ struct ContentView: View {
             }
             #endif
         }
-        .alert(whatsNewAlert.versionTitle, isPresented: $showVersionAlert) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text(whatsNewAlert.versionMessage)
+        .sheet(isPresented: $showVersionAlert) {
+            WhatsNewView(title: whatsNewAlert.versionTitle) {
+                showVersionAlert = false
+            }
         }
         .alert("Warning", isPresented: $showResetAlert) {
             Button("Reset", role: .destructive) {
