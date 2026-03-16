@@ -187,6 +187,12 @@ struct ContentView: View {
             if whatsNewAlert.shouldShowAlert() {
                 activeAlert = .versionAlert
             }
+            #if targetEnvironment(macCatalyst)
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                windowScene.sizeRestrictions?.minimumSize = CGSize(width: 390, height: 600)
+                windowScene.sizeRestrictions?.maximumSize = CGSize(width: 500, height: 950)
+            }
+            #endif
         }
         .alert(item: $activeAlert) { alertType in
             switch alertType {
