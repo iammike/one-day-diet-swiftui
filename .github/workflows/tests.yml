@@ -10,10 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Select simulator
+        run: |
+          UDID=$(xcrun simctl list devices available | grep "iPhone" | head -1 | grep -Eo '[0-9A-F-]{36}')
+          echo "SIMULATOR_UDID=$UDID" >> $GITHUB_ENV
+
       - name: Run unit tests
         run: |
           xcodebuild test \
             -project "One Day Diet.xcodeproj" \
             -scheme "One Day Diet" \
-            -destination "platform=iOS Simulator,OS=latest,name=Any iOS Simulator Device" \
+            -destination "id=$SIMULATOR_UDID" \
             -only-testing:"One Day DietTests"
