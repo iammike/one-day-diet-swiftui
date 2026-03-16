@@ -17,8 +17,8 @@ This is a standard Xcode project with no build scripts or package managers.
 
 From command line:
 ```bash
-xcodebuild -project "One Day Diet.xcodeproj" -scheme "One Day Diet" -destination "platform=iOS Simulator,name=iPhone 16" build
-xcodebuild -project "One Day Diet.xcodeproj" -scheme "One Day DietTests" -destination "platform=iOS Simulator,name=iPhone 16" test
+xcodebuild -project "One Day Diet.xcodeproj" -scheme "One Day Diet" -destination "generic/platform=iOS Simulator" build
+xcodebuild -project "One Day Diet.xcodeproj" -scheme "One Day Diet" -destination "generic/platform=iOS Simulator" test
 ```
 
 ## Architecture
@@ -41,7 +41,7 @@ xcodebuild -project "One Day Diet.xcodeproj" -scheme "One Day DietTests" -destin
 
 ## Storage
 
-UserDefaults only (no CoreData, no network). Keys are centralized in `UserDefaultsKeys` struct in `ViewModel.swift`. Persisted data:
+UserDefaults only (no CoreData, no network). The `UserDefaultsKeys` struct in `ViewModel.swift` holds most keys; `showMacrosKey` is defined in an extension in `ContentView.swift`, and `WhatsNewAlert` uses the string literal `"lastVersionPromptedForReview"` directly. Persisted data:
 - Daily servings per food group (keyed by date string `yyyy-MM-dd`)
 - Last accessed date (for auto-reset at midnight)
 - Macro tracking opt-in preference
