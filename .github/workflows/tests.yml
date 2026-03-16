@@ -1,0 +1,19 @@
+name: Unit Tests
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run unit tests
+        run: |
+          xcodebuild test \
+            -project "One Day Diet.xcodeproj" \
+            -scheme "One Day Diet" \
+            -destination "platform=iOS Simulator,OS=latest,name=iPhone 16" \
+            -only-testing:"One Day DietTests"
