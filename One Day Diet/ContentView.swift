@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var showStatsSheet = false
     @State private var showDatePickerSheet = false
     @AppStorage(UserDefaultsKeys.showMacros) private var showMacros = false
+    @AppStorage(UserDefaultsKeys.colorSchemePreference) private var colorSchemeRawValue: String = AppColorScheme.system.rawValue
     @State private var showVersionAlert = false
     @State private var showResetAlert = false
     @State private var undoFeedbackTrigger = false
@@ -68,6 +69,19 @@ struct ContentView: View {
                         Divider()
                         Button(showMacros ? "🧪 Hide Macro Tracking " : "🧪 Show Macro Tracking") {
                             showMacros.toggle()
+                        }
+                        Menu("🌙 Appearance") {
+                            ForEach(AppColorScheme.allCases, id: \.rawValue) { scheme in
+                                Button {
+                                    colorSchemeRawValue = scheme.rawValue
+                                } label: {
+                                    if colorSchemeRawValue == scheme.rawValue {
+                                        Label(scheme.rawValue, systemImage: "checkmark")
+                                    } else {
+                                        Text(scheme.rawValue)
+                                    }
+                                }
+                            }
                         }
                         Divider()
                         Button("🧼 Clear Visible Data", action: { viewModel.resetServings(for: viewModel.currentDate) })
@@ -172,10 +186,10 @@ struct ContentView: View {
             }
             #endif
         }
-        .alert(whatsNewAlert.versionTitle, isPresented: $showVersionAlert) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text(whatsNewAlert.versionMessage)
+        .sheet(isPresented: $showVersionAlert) {
+            WhatsNewView(title: whatsNewAlert.versionTitle) {
+                showVersionAlert = false
+            }
         }
         .alert("Warning", isPresented: $showResetAlert) {
             Button("Reset", role: .destructive) {
@@ -210,6 +224,7 @@ struct ContentView: View {
                 viewModel.checkAndUpdateDate()
             }
         }
+        .preferredColorScheme(AppColorScheme(rawValue: colorSchemeRawValue)?.colorScheme)
     }
 }
 

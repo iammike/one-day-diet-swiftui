@@ -7,10 +7,25 @@
 
 import SwiftUI
 
+enum AppColorScheme: String, CaseIterable {
+    case system = "System"
+    case light = "Light"
+    case dark = "Dark"
+
+    var colorScheme: ColorScheme? {
+        switch self {
+        case .system: return nil
+        case .light: return .light
+        case .dark: return .dark
+        }
+    }
+}
+
 struct UserDefaultsKeys {
     static let servingsDataStore = "servingsDataStore"
     static let lastAccessedDate = "lastAccessedDate"
     static let showMacros = "showMacros"
+    static let colorSchemePreference = "colorSchemePreference"
     static let lastVersionPromptedForReview = "lastVersionPromptedForReview"
 
     static func trackableServingsKey(for dateKey: String) -> String {
