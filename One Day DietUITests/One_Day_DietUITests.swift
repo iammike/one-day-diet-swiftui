@@ -22,12 +22,43 @@ final class One_Day_DietUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testSwipeLeftGoesForwardADay() throws {
         let app = XCUIApplication()
         app.launch()
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // Go back one day first so we have room to swipe forward
+        let backButton = app.buttons["arrow.left"]
+        XCTAssertTrue(backButton.waitForExistence(timeout: 3))
+        backButton.tap()
+
+        let datePicker = app.datePickers.firstMatch
+        XCTAssertTrue(datePicker.waitForExistence(timeout: 3))
+        let labelBefore = datePicker.value as? String ?? ""
+
+        // Swipe on the score label (plain SwiftUI text, won't intercept gesture)
+        let scoreLabel = app.staticTexts.matching(identifier: "totalScore").firstMatch
+        XCTAssertTrue(scoreLabel.waitForExistence(timeout: 3))
+        scoreLabel.swipeLeft()
+
+        let labelAfter = datePicker.value as? String ?? ""
+        XCTAssertNotEqual(labelBefore, labelAfter, "Date should have changed after swiping left")
+    }
+
+    func testSwipeRightGoesBackADay() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        let datePicker = app.datePickers.firstMatch
+        XCTAssertTrue(datePicker.waitForExistence(timeout: 3))
+        let labelBefore = datePicker.value as? String ?? ""
+
+        // Swipe on the score label (plain SwiftUI text, won't intercept gesture)
+        let scoreLabel = app.staticTexts.matching(identifier: "totalScore").firstMatch
+        XCTAssertTrue(scoreLabel.waitForExistence(timeout: 3))
+        scoreLabel.swipeRight()
+
+        let labelAfter = datePicker.value as? String ?? ""
+        XCTAssertNotEqual(labelBefore, labelAfter, "Date should have changed after swiping right")
     }
 
     func testLaunchPerformance() throws {

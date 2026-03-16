@@ -23,17 +23,9 @@ struct WhatsNewAlert {
 
 
     func getVersionAlert() -> Alert {
-        let bulletedList = 
+        let bulletedList =
                             """
-                            🧪 Macro tracking! Hidden by default, these are unscored and can be enabled via the menu.
-
-                            👆 Haptic feedback makes your taps more obvious. Must be enabled in your system settings.
-
-                            🙋 Added yet another Q&A to FAQ. These are all from my wife.
-
-                            🐣 Easter eggs! Catch 'em all!
-
-                            Still getting those requests to make 🍆 the vegetable. Still ignoring them.
+                            👈👉 Swipe left or right on the date area to change days.
                             """
         
         return Alert(
