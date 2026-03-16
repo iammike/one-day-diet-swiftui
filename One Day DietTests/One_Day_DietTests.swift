@@ -123,6 +123,121 @@ final class One_Day_DietTests: XCTestCase {
         XCTAssertEqual(vm.selectedServings[0], 0)
     }
 
+    // MARK: - Stats: dailyStats
+
+    func testDailyStatsEmptyStoreReturnsEmpty() {
+        let vm = ViewModel()
+        XCTAssertTrue(vm.dailyStats(for: .thirtyDays).isEmpty)
+    }
+
+    func testDailyStatsFiltersIncompleteDays() {
+        let vm = ViewModel()
+        // 3 total servings is below the fallback threshold of 5
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+        vm.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        vm.selectedServings[0] = 3
+        vm.saveData(for: yesterday)
+        XCTAssertTrue(vm.dailyStats(for: .thirtyDays).isEmpty)
+    }
+
+    func testDailyStatsIncludesCompleteDays() {
+        let vm = ViewModel()
+        // Fruits: 3 servings (score 6) + Vegetables: 2 servings (score 4) = total 5, score 10
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+        vm.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        vm.selectedServings[0] = 3
+        vm.selectedServings[1] = 2
+        vm.saveData(for: yesterday)
+        let stats = vm.dailyStats(for: .thirtyDays)
+        XCTAssertEqual(stats.count, 1)
+        XCTAssertEqual(stats[0].score, 10)
+    }
+
+    func testDailyStatsDateRangeFiltering() {
+        let vm = ViewModel()
+        let threeDaysAgo = Calendar.current.date(byAdding: .day, value: -3, to: Date())!
+        let tenDaysAgo = Calendar.current.date(byAdding: .day, value: -10, to: Date())!
+
+        vm.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        vm.selectedServings[0] = 5
+        vm.saveData(for: threeDaysAgo)
+
+        vm.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        vm.selectedServings[0] = 5
+        vm.saveData(for: tenDaysAgo)
+
+        XCTAssertEqual(vm.dailyStats(for: .sevenDays).count, 1)
+        XCTAssertEqual(vm.dailyStats(for: .all).count, 2)
+    }
+
+    func testDailyStatsSortedByDate() {
+        let vm = ViewModel()
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+        let twoDaysAgo = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
+
+        vm.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        vm.selectedServings[0] = 5
+        vm.saveData(for: yesterday)
+
+        vm.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        vm.selectedServings[0] = 5
+        vm.saveData(for: twoDaysAgo)
+
+        let stats = vm.dailyStats(for: .all)
+        XCTAssertEqual(stats.count, 2)
+        XCTAssertLessThan(stats[0].date, stats[1].date)
+    }
+
+    func testDailyStatsAdaptiveThresholdFiltersLowDays() {
+        let vm = ViewModel()
+        // Save 7 days with 10 total servings (median=10, threshold=5)
+        for i in 1...7 {
+            let date = Calendar.current.date(byAdding: .day, value: -i, to: Date())!
+            vm.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+            vm.selectedServings[0] = 5
+            vm.selectedServings[1] = 5
+            vm.saveData(for: date)
+        }
+        // Save a day with only 3 servings - below adaptive threshold of 5
+        let eightDaysAgo = Calendar.current.date(byAdding: .day, value: -8, to: Date())!
+        vm.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        vm.selectedServings[0] = 3
+        vm.saveData(for: eightDaysAgo)
+
+        XCTAssertEqual(vm.dailyStats(for: .all).count, 7)
+    }
+
+    // MARK: - Stats: averageServings
+
+    func testAverageServingsEmptyReturnsZeros() {
+        let vm = ViewModel()
+        let avgs = vm.averageServings(for: .thirtyDays)
+        XCTAssertEqual(avgs.count, foodGroupsData.count)
+        XCTAssertTrue(avgs.allSatisfy { $0 == 0 })
+    }
+
+    func testAverageServingsCalculation() {
+        let vm = ViewModel()
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+        let twoDaysAgo = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
+
+        // Day 1: Fruits=4, Veg=1 (total=5, meets threshold)
+        vm.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        vm.selectedServings[0] = 4
+        vm.selectedServings[1] = 1
+        vm.saveData(for: yesterday)
+
+        // Day 2: Fruits=2, Veg=3 (total=5, meets threshold)
+        vm.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
+        vm.selectedServings[0] = 2
+        vm.selectedServings[1] = 3
+        vm.saveData(for: twoDaysAgo)
+
+        let avgs = vm.averageServings(for: .thirtyDays)
+        XCTAssertEqual(avgs[0], 3.0, accuracy: 0.01)  // (4 + 2) / 2
+        XCTAssertEqual(avgs[1], 2.0, accuracy: 0.01)  // (1 + 3) / 2
+    }
+
     // MARK: - Date Extensions
 
     func testFormattedDateFormat() {
