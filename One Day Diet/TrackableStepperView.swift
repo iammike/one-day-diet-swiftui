@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+private let maxTrackableServings = 100
+
 struct TrackableStepperView: View {
     let trackable: Trackable
     @Binding var servings: Int
@@ -15,12 +17,12 @@ struct TrackableStepperView: View {
         VStack(alignment: .leading) {
             Stepper(
                 onIncrement: {
-                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                    servings += 1
+                    if servings < maxTrackableServings {
+                        servings += 1
+                    }
                 },
                 onDecrement: {
                     if servings > 0 {
-                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         servings -= 1
                     }
                 },
@@ -29,6 +31,7 @@ struct TrackableStepperView: View {
                     Text("\(trackable.emoji) \(trackable.name): \(totalUnits)\(trackable.unit)")
                 }
             )
+            .sensoryFeedback(.impact(weight: .medium), trigger: servings)
         }
     }
 }

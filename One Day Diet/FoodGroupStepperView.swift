@@ -18,13 +18,11 @@ struct FoodGroupStepperView: View {
             Stepper(
                 onIncrement: {
                     if serving < foodGroup.scores.count - 1 {
-                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         serving += 1
                     }
                 },
                 onDecrement: {
                     if serving > 0 {
-                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                         serving -= 1
                     }
                 },
@@ -33,6 +31,7 @@ struct FoodGroupStepperView: View {
                     Text("Servings: \(serving) → Score: \(currentScore)")
                 }
             )
+            .sensoryFeedback(.impact(weight: .medium), trigger: serving)
 
             let currentScore = foodGroup.scores[serving]
             let nextIndex = serving + 1
@@ -45,4 +44,3 @@ struct FoodGroupStepperView: View {
         }
     }
 }
-

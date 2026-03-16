@@ -10,6 +10,12 @@ import SwiftUI
 struct UserDefaultsKeys {
     static let servingsDataStore = "servingsDataStore"
     static let lastAccessedDate = "lastAccessedDate"
+    static let showMacros = "showMacros"
+    static let lastVersionPromptedForReview = "lastVersionPromptedForReview"
+
+    static func trackableServingsKey(for dateKey: String) -> String {
+        "trackable_\(dateKey)"
+    }
 }
 
 class ViewModel: ObservableObject {
@@ -39,7 +45,7 @@ class ViewModel: ObservableObject {
         }
         updateLastAccessedDate()
     }
-    
+
     func checkAndUpdateDate() {
         let todayKey = Date().formattedDate
         let lastAccessedDate = UserDefaults.standard.string(forKey: UserDefaultsKeys.lastAccessedDate) ?? todayKey
@@ -79,11 +85,11 @@ class ViewModel: ObservableObject {
         if shouldCaptureUndo {
             shouldCaptureUndo = false
             undoServings = servingsDataStore[dateKey] ?? Array(repeating: 0, count: foodGroupsData.count)
-            undoTrackableServings = servingsDataStore["trackable_\(dateKey)"] ?? Array(repeating: 0, count: trackablesData.count)
+            undoTrackableServings = servingsDataStore[UserDefaultsKeys.trackableServingsKey(for: dateKey)] ?? Array(repeating: 0, count: trackablesData.count)
             DispatchQueue.main.async { [weak self] in self?.shouldCaptureUndo = true }
         }
         servingsDataStore[dateKey] = selectedServings
-        servingsDataStore["trackable_\(dateKey)"] = selectedTrackableServings
+        servingsDataStore[UserDefaultsKeys.trackableServingsKey(for: dateKey)] = selectedTrackableServings
         UserDefaults.standard.set(servingsDataStore, forKey: UserDefaultsKeys.servingsDataStore)
     }
 
@@ -95,7 +101,7 @@ class ViewModel: ObservableObject {
         selectedTrackableServings = trackable
         let dateKey = date.formattedDate
         servingsDataStore[dateKey] = servings
-        servingsDataStore["trackable_\(dateKey)"] = trackable
+        servingsDataStore[UserDefaultsKeys.trackableServingsKey(for: dateKey)] = trackable
         UserDefaults.standard.set(servingsDataStore, forKey: UserDefaultsKeys.servingsDataStore)
     }
 
@@ -111,14 +117,30 @@ class ViewModel: ObservableObject {
 
     private func loadServings(for dateKey: String) {
         selectedServings = servingsDataStore[dateKey] ?? Array(repeating: 0, count: foodGroupsData.count)
-        selectedTrackableServings = servingsDataStore["trackable_\(dateKey)"] ?? Array(repeating: 0, count: trackablesData.count)
+        selectedTrackableServings = servingsDataStore[UserDefaultsKeys.trackableServingsKey(for: dateKey)] ?? Array(repeating: 0, count: trackablesData.count)
     }
 }
 
 extension Date {
+    private static let iso8601Formatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "yyyy-MM-dd"
+        return f
+    }()
+
+    private static let displayFormatter: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "EEE, MMM d"
+        return f
+    }()
+
     var formattedDate: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: self)
+        Date.iso8601Formatter.string(from: self)
+    }
+
+    var displayLabel: String {
+        if Calendar.current.isDateInToday(self) { return "Today" }
+        if Calendar.current.isDateInYesterday(self) { return "Yesterday" }
+        return Date.displayFormatter.string(from: self)
     }
 }
