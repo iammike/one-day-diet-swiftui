@@ -12,6 +12,7 @@ struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var showAboutSheet = false
     @State private var showFaqSheet = false
+    @State private var showStatsSheet = false
     @State private var showDatePickerSheet = false
     @AppStorage(UserDefaultsKeys.showMacros) private var showMacros = false
     @State private var showVersionAlert = false
@@ -63,6 +64,7 @@ struct ContentView: View {
                     Spacer()
                     Menu {
                         Button("😎 What's New?") { showVersionAlert = true }
+                        Button("📊 Stats") { showStatsSheet = true }
                         Button("🙋 FAQ") { showFaqSheet = true }
                         Button("ℹ️ About") { showAboutSheet = true }
                         Divider()
@@ -193,6 +195,11 @@ struct ContentView: View {
         .sheet(isPresented: $showAboutSheet) {
             AboutView() {
                 showAboutSheet = false
+            }
+        }
+        .sheet(isPresented: $showStatsSheet) {
+            StatsView(viewModel: viewModel) {
+                showStatsSheet = false
             }
         }
         .onShake {

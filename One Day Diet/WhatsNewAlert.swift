@@ -13,6 +13,8 @@ struct WhatsNewAlert {
     private var bulletedList: String {
         """
         👈👉 Swipe left or right on the date area to change days.
+        📳 Shake your phone to undo the last serving change.
+        📊 Tap the menu to view your score history and food group trends.
         """
     }
 
