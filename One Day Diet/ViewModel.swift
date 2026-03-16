@@ -17,6 +17,9 @@ class ViewModel: ObservableObject {
     @Published var selectedTrackableServings: [Int]
     @Published var currentDate: Date = Date()
     private var servingsDataStore: [String: [Int]] = [:]
+    private var undoServings: [Int]?
+    private var undoTrackableServings: [Int]?
+    private var shouldCaptureUndo = true
 
     init() {
         self.selectedServings = Array(repeating: 0, count: foodGroupsData.count)
@@ -73,8 +76,26 @@ class ViewModel: ObservableObject {
 
     func saveData(for date: Date) {
         let dateKey = date.formattedDate
+        if shouldCaptureUndo {
+            shouldCaptureUndo = false
+            undoServings = servingsDataStore[dateKey] ?? Array(repeating: 0, count: foodGroupsData.count)
+            undoTrackableServings = servingsDataStore["trackable_\(dateKey)"] ?? Array(repeating: 0, count: trackablesData.count)
+            DispatchQueue.main.async { [weak self] in self?.shouldCaptureUndo = true }
+        }
         servingsDataStore[dateKey] = selectedServings
         servingsDataStore["trackable_\(dateKey)"] = selectedTrackableServings
+        UserDefaults.standard.set(servingsDataStore, forKey: UserDefaultsKeys.servingsDataStore)
+    }
+
+    func undoLastChange(for date: Date) {
+        guard let servings = undoServings, let trackable = undoTrackableServings else { return }
+        undoServings = nil
+        undoTrackableServings = nil
+        selectedServings = servings
+        selectedTrackableServings = trackable
+        let dateKey = date.formattedDate
+        servingsDataStore[dateKey] = servings
+        servingsDataStore["trackable_\(dateKey)"] = trackable
         UserDefaults.standard.set(servingsDataStore, forKey: UserDefaultsKeys.servingsDataStore)
     }
 

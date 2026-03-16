@@ -219,6 +219,10 @@ struct ContentView: View {
                 showAboutSheet = false
             }
         }
+        .onShake {
+            viewModel.undoLastChange(for: viewModel.currentDate)
+            UINotificationFeedbackGenerator().notificationOccurred(.warning)
+        }
         .onDisappear {
             viewModel.saveData(for: viewModel.currentDate)
         }

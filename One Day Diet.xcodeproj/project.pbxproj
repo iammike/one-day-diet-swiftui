@@ -19,6 +19,7 @@
 		EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC992B4B702900A30501 /* ViewModel.swift */; };
 		EF7BECA02B4B8CE400A30501 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC9F2B4B8CE400A30501 /* AboutView.swift */; };
 		EF88EDD72B4D99E4003D170E /* WhatsNewAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */; };
+		EFA1B0012B4D99E4003D170E /* ShakeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA1B0002B4D99E4003D170E /* ShakeDetector.swift */; };
 		EF88EDD92B4DA1C8003D170E /* FaqView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88EDD82B4DA1C8003D170E /* FaqView.swift */; };
 		EF8C46C62B50268600CCF023 /* FoodGroupStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C46C52B50268600CCF023 /* FoodGroupStepperView.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		EF7BEC992B4B702900A30501 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		EF7BEC9F2B4B8CE400A30501 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewAlert.swift; sourceTree = "<group>"; };
+		EFA1B0002B4D99E4003D170E /* ShakeDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeDetector.swift; sourceTree = "<group>"; };
 		EF88EDD82B4DA1C8003D170E /* FaqView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqView.swift; sourceTree = "<group>"; };
 		EF8C46C52B50268600CCF023 /* FoodGroupStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGroupStepperView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +122,7 @@
 				EF7BEC992B4B702900A30501 /* ViewModel.swift */,
 				EF6DFB642B50E015004B376A /* TrackablesData.swift */,
 				EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */,
+				EFA1B0002B4D99E4003D170E /* ShakeDetector.swift */,
 				EF47593D2B4A469400BCE0EA /* Assets.xcassets */,
 				EF47593F2B4A469400BCE0EA /* One_Day_Diet.entitlements */,
 				EF4759402B4A469400BCE0EA /* Preview Content */,
@@ -287,6 +290,7 @@
 				EF6DFB652B50E015004B376A /* TrackablesData.swift in Sources */,
 				EF6DFB672B50E137004B376A /* TrackableStepperView.swift in Sources */,
 				EF88EDD72B4D99E4003D170E /* WhatsNewAlert.swift in Sources */,
+				EFA1B0012B4D99E4003D170E /* ShakeDetector.swift in Sources */,
 				EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */,
 				EF88EDD92B4DA1C8003D170E /* FaqView.swift in Sources */,
 				EF4759672B4A4F7800BCE0EA /* FoodGroupsData.swift in Sources */,
