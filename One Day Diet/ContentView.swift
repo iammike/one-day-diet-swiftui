@@ -7,36 +7,16 @@
 
 import SwiftUI
 
-enum ActiveAlert: Identifiable {
-    case versionAlert, resetDataAlert
-
-    var id: Self {
-        return self
-    }
-}
-
-extension UserDefaultsKeys {
-    static let showMacrosKey = "showMacros"
-}
-
-extension Date {
-    var displayLabel: String {
-        if Calendar.current.isDateInToday(self) { return "Today" }
-        if Calendar.current.isDateInYesterday(self) { return "Yesterday" }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE, MMM d"
-        return formatter.string(from: self)
-    }
-}
-
 struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
     @Environment(\.scenePhase) private var scenePhase
     @State private var showAboutSheet = false
     @State private var showFaqSheet = false
     @State private var showDatePickerSheet = false
-    @State private var showMacros: Bool = UserDefaults.standard.bool(forKey: UserDefaultsKeys.showMacrosKey)
-    @State private var activeAlert: ActiveAlert?
+    @AppStorage(UserDefaultsKeys.showMacros) private var showMacros = false
+    @State private var showVersionAlert = false
+    @State private var showResetAlert = false
+    @State private var undoFeedbackTrigger = false
     @State private var swipeInsertEdge: Edge = .trailing
     @State private var isAnimating = false
     private var whatsNewAlert = WhatsNewAlert()
@@ -52,7 +32,6 @@ struct ContentView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
             isAnimating = false
         }
-        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
     }
 
     private var swipeGesture: some Gesture {
@@ -75,7 +54,7 @@ struct ContentView: View {
                 #if !targetEnvironment(macCatalyst)
                     Text("One Day Diet")
                         .font(.largeTitle)
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .center)
                 #endif
                 }
@@ -83,17 +62,16 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     Menu {
-                        Button("😎 What's New?") { activeAlert = .versionAlert }
+                        Button("😎 What's New?") { showVersionAlert = true }
                         Button("🙋 FAQ") { showFaqSheet = true }
                         Button("ℹ️ About") { showAboutSheet = true }
                         Divider()
                         Button(showMacros ? "🧪 Hide Macro Tracking " : "🧪 Show Macro Tracking") {
                             showMacros.toggle()
-                            UserDefaults.standard.set(showMacros, forKey: UserDefaultsKeys.showMacrosKey)
                         }
                         Divider()
                         Button("🧼 Clear Visible Data", action: { viewModel.resetServings(for: viewModel.currentDate) })
-                        Button("💣 Clear All Data") { activeAlert = .resetDataAlert }
+                        Button("💣 Clear All Data") { showResetAlert = true }
                     } label: {
                         Image(systemName: "ellipsis.circle")
                             .font(.title2)
@@ -185,7 +163,7 @@ struct ContentView: View {
         }
         .onAppear {
             if whatsNewAlert.shouldShowAlert() {
-                activeAlert = .versionAlert
+                showVersionAlert = true
             }
             #if targetEnvironment(macCatalyst)
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
@@ -194,20 +172,18 @@ struct ContentView: View {
             }
             #endif
         }
-        .alert(item: $activeAlert) { alertType in
-            switch alertType {
-            case .versionAlert:
-                return whatsNewAlert.getVersionAlert()
-            case .resetDataAlert:
-                return Alert(
-                    title: Text("Warning"),
-                    message: Text("This will reset all application data. Are you sure?"),
-                    primaryButton: .destructive(Text("Reset")) {
-                        viewModel.clearAllData()
-                    },
-                    secondaryButton: .cancel()
-                )
+        .alert(whatsNewAlert.versionTitle, isPresented: $showVersionAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(whatsNewAlert.versionMessage)
+        }
+        .alert("Warning", isPresented: $showResetAlert) {
+            Button("Reset", role: .destructive) {
+                viewModel.clearAllData()
             }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("This will reset all application data. Are you sure?")
         }
         .sheet(isPresented: $showFaqSheet) {
             FaqView() {
@@ -221,8 +197,10 @@ struct ContentView: View {
         }
         .onShake {
             viewModel.undoLastChange(for: viewModel.currentDate)
-            UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            undoFeedbackTrigger.toggle()
         }
+        .sensoryFeedback(.impact(flexibility: .soft), trigger: viewModel.currentDate)
+        .sensoryFeedback(.warning, trigger: undoFeedbackTrigger)
         .onDisappear {
             viewModel.saveData(for: viewModel.currentDate)
         }
