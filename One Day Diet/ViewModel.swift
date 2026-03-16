@@ -18,6 +18,30 @@ struct UserDefaultsKeys {
     }
 }
 
+struct DailyStats: Identifiable {
+    let id = UUID()
+    let date: Date
+    let score: Int
+}
+
+enum StatsRange: String, CaseIterable {
+    case sevenDays = "7D"
+    case thirtyDays = "30D"
+    case ninetyDays = "90D"
+    case oneYear = "1Y"
+    case all = "All"
+
+    var days: Int? {
+        switch self {
+        case .sevenDays: return 7
+        case .thirtyDays: return 30
+        case .ninetyDays: return 90
+        case .oneYear: return 365
+        case .all: return nil
+        }
+    }
+}
+
 class ViewModel: ObservableObject {
     @Published var selectedServings: [Int]
     @Published var selectedTrackableServings: [Int]
@@ -115,6 +139,63 @@ class ViewModel: ObservableObject {
         resetServings(for: Date())
     }
 
+    // Adaptive threshold: median of all daily totals / 2, with a floor of 5 until 7+ days recorded
+    private func incompleteThreshold() -> Int {
+        let totals = servingsDataStore.keys
+            .filter { !$0.hasPrefix("trackable_") }
+            .compactMap { key -> Int? in
+                let total = (servingsDataStore[key] ?? []).reduce(0, +)
+                return total > 0 ? total : nil
+            }
+            .sorted()
+        guard totals.count >= 7 else { return 5 }
+        return totals[totals.count / 2] / 2
+    }
+
+    func dailyStats(for range: StatsRange) -> [DailyStats] {
+        let threshold = incompleteThreshold()
+        let cutoff: Date? = range.days.map {
+            Calendar.current.date(byAdding: .day, value: -$0, to: Date()) ?? Date()
+        }
+        return servingsDataStore.keys
+            .filter { !$0.hasPrefix("trackable_") }
+            .compactMap { key -> DailyStats? in
+                guard let date = Date.from(isoString: key) else { return nil }
+                if let cutoff, date < cutoff { return nil }
+                let servings = servingsDataStore[key] ?? []
+                guard servings.reduce(0, +) >= threshold else { return nil }
+                let score = servings.enumerated().reduce(0) { sum, pair in
+                    guard pair.offset < foodGroupsData.count else { return sum }
+                    let group = foodGroupsData[pair.offset]
+                    let idx = min(pair.element, group.scores.count - 1)
+                    return sum + group.scores[idx]
+                }
+                return DailyStats(date: date, score: score)
+            }
+            .sorted { $0.date < $1.date }
+    }
+
+    func averageServings(for range: StatsRange) -> [Double] {
+        let threshold = incompleteThreshold()
+        let cutoff: Date? = range.days.map {
+            Calendar.current.date(byAdding: .day, value: -$0, to: Date()) ?? Date()
+        }
+        let validServings = servingsDataStore.keys
+            .filter { !$0.hasPrefix("trackable_") }
+            .compactMap { key -> [Int]? in
+                guard let date = Date.from(isoString: key) else { return nil }
+                if let cutoff, date < cutoff { return nil }
+                let servings = servingsDataStore[key] ?? []
+                return servings.reduce(0, +) >= threshold ? servings : nil
+            }
+        guard !validServings.isEmpty else { return Array(repeating: 0, count: foodGroupsData.count) }
+        let count = Double(validServings.count)
+        return (0..<foodGroupsData.count).map { i in
+            let total = validServings.reduce(0) { sum, servings in sum + (servings.count > i ? servings[i] : 0) }
+            return Double(total) / count
+        }
+    }
+
     private func loadServings(for dateKey: String) {
         selectedServings = servingsDataStore[dateKey] ?? Array(repeating: 0, count: foodGroupsData.count)
         selectedTrackableServings = servingsDataStore[UserDefaultsKeys.trackableServingsKey(for: dateKey)] ?? Array(repeating: 0, count: trackablesData.count)
@@ -133,6 +214,10 @@ extension Date {
         f.dateFormat = "EEE, MMM d"
         return f
     }()
+
+    static func from(isoString: String) -> Date? {
+        iso8601Formatter.date(from: isoString)
+    }
 
     var formattedDate: String {
         Date.iso8601Formatter.string(from: self)

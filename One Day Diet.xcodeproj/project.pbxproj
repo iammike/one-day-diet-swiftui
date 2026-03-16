@@ -19,6 +19,7 @@
 		EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BEC992B4B702900A30501 /* ViewModel.swift */; };
 		EF88EDD72B4D99E4003D170E /* WhatsNewAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */; };
 		EFA1B0012B4D99E4003D170E /* ShakeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA1B0002B4D99E4003D170E /* ShakeDetector.swift */; };
+		EF5757572B57575700575757 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5757562B57575700575757 /* StatsView.swift */; };
 		EF88EDD92B4DA1C8003D170E /* FaqView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF88EDD82B4DA1C8003D170E /* FaqView.swift */; };
 		EF8C46C62B50268600CCF023 /* FoodGroupStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8C46C52B50268600CCF023 /* FoodGroupStepperView.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		EF7BEC992B4B702900A30501 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		EF88EDD62B4D99E4003D170E /* WhatsNewAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewAlert.swift; sourceTree = "<group>"; };
 		EFA1B0002B4D99E4003D170E /* ShakeDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeDetector.swift; sourceTree = "<group>"; };
+		EF5757562B57575700575757 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		EF88EDD82B4DA1C8003D170E /* FaqView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqView.swift; sourceTree = "<group>"; };
 		EF8C46C52B50268600CCF023 /* FoodGroupStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodGroupStepperView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				EF88EDD82B4DA1C8003D170E /* FaqView.swift */,
+				EF5757562B57575700575757 /* StatsView.swift */,
 				EF47593B2B4A469100BCE0EA /* ContentView.swift */,
 				EF8C46C52B50268600CCF023 /* FoodGroupStepperView.swift */,
 				EF6DFB662B50E137004B376A /* TrackableStepperView.swift */,
@@ -288,6 +291,7 @@
 				EF6DFB672B50E137004B376A /* TrackableStepperView.swift in Sources */,
 				EF88EDD72B4D99E4003D170E /* WhatsNewAlert.swift in Sources */,
 				EFA1B0012B4D99E4003D170E /* ShakeDetector.swift in Sources */,
+				EF5757572B57575700575757 /* StatsView.swift in Sources */,
 				EF7BEC9A2B4B702900A30501 /* ViewModel.swift in Sources */,
 				EF88EDD92B4DA1C8003D170E /* FaqView.swift in Sources */,
 				EF4759672B4A4F7800BCE0EA /* FoodGroupsData.swift in Sources */,

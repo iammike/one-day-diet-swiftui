@@ -11,6 +11,7 @@ struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
     @Environment(\.scenePhase) private var scenePhase
     @State private var showFaqSheet = false
+    @State private var showStatsSheet = false
     @State private var showDatePickerSheet = false
     @AppStorage(UserDefaultsKeys.showMacros) private var showMacros = false
     @State private var showVersionAlert = false
@@ -62,6 +63,7 @@ struct ContentView: View {
                     Spacer()
                     Menu {
                         Button("😎 What's New?") { showVersionAlert = true }
+                        Button("📊 Stats") { showStatsSheet = true }
                         Button("🙋 FAQ / About") { showFaqSheet = true }
                         Divider()
                         Button(showMacros ? "🧪 Hide Macro Tracking " : "🧪 Show Macro Tracking") {
@@ -186,6 +188,11 @@ struct ContentView: View {
         .sheet(isPresented: $showFaqSheet) {
             FaqView() {
                 showFaqSheet = false
+            }
+        }
+        .sheet(isPresented: $showStatsSheet) {
+            StatsView(viewModel: viewModel) {
+                showStatsSheet = false
             }
         }
         .onShake {
