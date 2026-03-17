@@ -27,10 +27,10 @@ struct ContentView: View {
         guard let newDate = Calendar.current.date(byAdding: .day, value: days, to: viewModel.currentDate) else { return }
         swipeInsertEdge = days > 0 ? .trailing : .leading
         isAnimating = true
-        withAnimation(.easeInOut(duration: 0.3)) {
+        withAnimation(.easeInOut(duration: 0.2)) {
             viewModel.currentDate = newDate
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             isAnimating = false
         }
     }
@@ -99,6 +99,7 @@ struct ContentView: View {
             #if targetEnvironment(macCatalyst)
             .padding()
             #endif
+            .animation(nil, value: viewModel.currentDate)
 
             // Animated container: slides in/out when date changes
             VStack {
@@ -166,14 +167,14 @@ struct ContentView: View {
             VStack(spacing: 20) {
                 DatePicker("Select Date", selection: $viewModel.currentDate, in: ...Date(), displayedComponents: .date)
                     .datePickerStyle(.graphical)
-                    .onChange(of: viewModel.currentDate) { oldValue, newValue in
-                        viewModel.updateData(for: newValue)
-                    }
                 Button("Done") { showDatePickerSheet = false }
                     .padding(.bottom)
             }
             .padding()
             .presentationDetents([.medium])
+        }
+        .onChange(of: viewModel.currentDate) { _, newValue in
+            viewModel.updateData(for: newValue)
         }
         .onAppear {
             if whatsNewAlert.shouldShowAlert() {
