@@ -63,9 +63,9 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     Menu {
-                        Button("😎 What's New?") { showVersionAlert = true }
                         Button("📊 Stats") { showStatsSheet = true }
                         Button("🙋 FAQ / About") { showFaqSheet = true }
+                        Button("😎 What's New?") { showVersionAlert = true }
                         Divider()
                         Button(showMacros ? "🧪 Hide Macro Tracking " : "🧪 Show Macro Tracking") {
                             showMacros.toggle()
