@@ -156,8 +156,9 @@ class ViewModel: ObservableObject {
 
     // Adaptive threshold: median of all daily totals / 2, with a floor of 5 until 7+ days recorded
     private func incompleteThreshold() -> Int {
+        let todayKey = Date().formattedDate
         let totals = servingsDataStore.keys
-            .filter { !$0.hasPrefix("trackable_") }
+            .filter { !$0.hasPrefix("trackable_") && $0 != todayKey }
             .compactMap { key -> Int? in
                 let total = (servingsDataStore[key] ?? []).reduce(0, +)
                 return total > 0 ? total : nil
@@ -169,12 +170,14 @@ class ViewModel: ObservableObject {
 
     func dailyStats(for range: StatsRange) -> [DailyStats] {
         let threshold = incompleteThreshold()
+        let todayKey = Date().formattedDate
         let cutoff: Date? = range.days.map {
             Calendar.current.date(byAdding: .day, value: -$0, to: Date()) ?? Date()
         }
         return servingsDataStore.keys
             .filter { !$0.hasPrefix("trackable_") }
             .compactMap { key -> DailyStats? in
+                guard key != todayKey else { return nil }
                 guard let date = Date.from(isoString: key) else { return nil }
                 if let cutoff, date < cutoff { return nil }
                 let servings = servingsDataStore[key] ?? []
@@ -192,12 +195,14 @@ class ViewModel: ObservableObject {
 
     func averageServings(for range: StatsRange) -> [Double] {
         let threshold = incompleteThreshold()
+        let todayKey = Date().formattedDate
         let cutoff: Date? = range.days.map {
             Calendar.current.date(byAdding: .day, value: -$0, to: Date()) ?? Date()
         }
         let validServings = servingsDataStore.keys
             .filter { !$0.hasPrefix("trackable_") }
             .compactMap { key -> [Int]? in
+                guard key != todayKey else { return nil }
                 guard let date = Date.from(isoString: key) else { return nil }
                 if let cutoff, date < cutoff { return nil }
                 let servings = servingsDataStore[key] ?? []
