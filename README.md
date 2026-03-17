@@ -4,7 +4,11 @@ A simple iOS app for tracking daily food intake using the diet quality scoring s
 
 [Download on the App Store](https://apps.apple.com/us/app/one-day-diet/id6475656051) or [read more on my site](https://www.iammike.org/?page_id=4559).
 
-<img src="screenshots/main.png" alt="One Day Diet main screen" width="300"> <img src="screenshots/stats.png" alt="Statistics view" width="300">
+<div align="center">
+  <img src="screenshots/main.png" alt="One Day Diet main screen" width="270">
+  &nbsp;&nbsp;&nbsp;
+  <img src="screenshots/stats.png" alt="Statistics view" width="270">
+</div>
 
 ## How it works
 
